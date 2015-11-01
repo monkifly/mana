@@ -2,7 +2,7 @@ module mana {
 	export module core {
 		export class ModelManager extends egret.HashObject {
 
-			public static _singleIntances:flash.Dictionary;
+            public static _singleIntances: any = {};
 			public static getModel(classRef:any):any
 			{
 				if(mana.core.ModelManager._singleIntances.getItem(classRef) == null)
@@ -26,5 +26,3 @@ module mana {
 		}
 	}
 }
-
-mana.core.ModelManager._singleIntances = new flash.Dictionary();

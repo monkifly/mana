@@ -18,6 +18,9 @@
     {
       "name": "res"
     },
+    {
+      "name": "game"
+    },
 	{
 		"name": "mana"
 	}

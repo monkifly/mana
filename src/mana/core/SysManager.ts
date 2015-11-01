@@ -1,8 +1,8 @@
 module mana {
 	export module core {
-		export class SysManager extends mana.core.Singleton {
+		export class SysManager extends mana.Singleton {
 
-			protected _message:mana.net.Messager = Messager.getInstance();
+//			protected _message:mana.net.Messager = Messager.getInstance();
 
 			public constructor()
 			{
@@ -12,5 +12,3 @@ module mana {
 		}
 	}
 }
-
-flash.extendsClass("mana.core.SysManager","mana.core.Singleton")

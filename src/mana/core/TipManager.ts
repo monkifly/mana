@@ -1,10 +1,10 @@
 module mana {
 	export module core {
-		export class TipManager extends mana.core.Singleton {
+		export class TipManager extends mana.Singleton {
 
 			public static getInstance_static_mana_core_TipManager():mana.core.TipManager
 			{
-				return <mana.core.TipManager>flash.As3As(mana.core.Singleton.getInstance(mana.core.TipManager),mana.core.TipManager);
+				return <mana.core.TipManager>mana.Singleton.getInstance(mana.core.TipManager);
 			}
 
 			private _stage:egret.Stage;
@@ -12,7 +12,7 @@ module mana {
 			public constructor()
 			{
 				super();
-				this._stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,flash.bind(this.onStageMouseDown,this),null);
+				this._stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onStageMouseDown,this);
 			}
 
 			public registerComponent(target:egret.DisplayObject,data:any = null,tipClass:any = null,timeLag:boolean = false,maxWidth:number = 0,mouseDownDistroy:boolean = true)
@@ -23,7 +23,7 @@ module mana {
 			{
 			}
 
-			private onStageMouseDown(event:flash.MouseEvent)
+			private onStageMouseDown(event:egret.TouchEvent)
 			{
 			}
 
@@ -42,11 +42,9 @@ module mana {
 				super();
 				this.showObject = _arg1;
 				this.timelag = _arg2;
-				this.maxWidth = flash.checkInt(_arg3);
+				this.maxWidth = _arg3;
 			}
 
 		}
 	}
 }
-
-flash.extendsClass("mana.core.TipManager","mana.core.Singleton")

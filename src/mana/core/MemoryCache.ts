@@ -2,7 +2,7 @@ module mana {
 	export module core {
 		export class MemoryCache extends egret.HashObject {
 
-			private _dic:flash.Dictionary;
+            private _dic: any = {};
 			private _curCheckTime:number = 0;
 			private _maxCheckTime:number = 0;
 			private _recheckTime:number = 0;
@@ -11,14 +11,14 @@ module mana {
 			public constructor(checkTime:number = 30 * 60 * 1000)
 			{
 				super();
-				this._dic = new flash.Dictionary();
-				this._curCheckTime = flash.checkUint(0);
-				this._maxCheckTime = flash.checkUint(checkTime);
+                this._dic = {};
+				this._curCheckTime = 0;
+				this._maxCheckTime = checkTime;
 			}
 
 			public cache(name:string,value:any):any
 			{
-				var curTime:number = flash.checkInt(egret.getTimer());
+				var curTime:number = egret.getTimer();
 				if(curTime - this._curCheckTime > this._maxCheckTime)
 				{
 					this.clearLongTimeCache();
@@ -29,7 +29,7 @@ module mana {
 
 			public getValue(name:string):any
 			{
-				var curTime:number = flash.checkInt(egret.getTimer());
+				var curTime:number = egret.getTimer();
 				if(curTime - this._curCheckTime > this._maxCheckTime)
 				{
 					this.clearLongTimeCache();
@@ -37,7 +37,7 @@ module mana {
 				var tc:TimeCache = <any>this._dic.getItem(name);
 				if(tc)
 				{
-					tc.time = flash.checkInt(curTime);
+					tc.time = curTime;
 					return tc.value;
 				}
 				return null;
@@ -54,12 +54,14 @@ module mana {
 
 			public clearAllCache()
 			{
-				this._dic = new flash.Dictionary();
+				for(var key in this._dic){
+                    delete this._dic[key];
+				}
 			}
 
 			public clearLongTimeCache()
 			{
-				this._curCheckTime = flash.checkUint(egret.getTimer());
+				this._curCheckTime = egret.getTimer();
 				for(var forinvar__ in this._dic.map)
 				{
 					var key = this._dic.map[forinvar__][0];
@@ -73,23 +75,21 @@ module mana {
 
 			public setRemoveAfter(key:string,time:number)
 			{
-				time = flash.checkInt(time);
-
-				var curTime:number = flash.checkInt(egret.getTimer());
+				var curTime:number = egret.getTimer();
 				var tc:TimeCache = <any>this._dic.getItem(key);
 				if(tc)
-					tc.time = flash.checkInt(curTime - (this._maxCheckTime - time));
+					tc.time = curTime - (this._maxCheckTime - time);
 				if(this._recheckTimerID == -1)
 				{
-					this._recheckTime = flash.checkInt(curTime + time);
-					this._recheckTimerID = flash.checkInt(flash.setTimeout(flash.bind(this.onRecheck,this),time));
+					this._recheckTime = curTime + time;
+                    this._recheckTimerID = egret.setTimeout(this.onRecheck,this,time);
 				}
 				else
 				{
 					if(curTime + time > this._recheckTime)
 					{
-						flash.clearTimeout(this._recheckTimerID);
-						this._recheckTimerID = flash.checkInt(flash.setTimeout(flash.bind(this.onRecheck,this),time));
+						egret.clearTimeout(this._recheckTimerID);
+						this._recheckTimerID = egret.setTimeout(this.onRecheck,this,time);
 					}
 				}
 			}
@@ -97,7 +97,7 @@ module mana {
 			private onRecheck()
 			{
 				this.clearLongTimeCache();
-				this._recheckTimerID = flash.checkInt(-1);
+				this._recheckTimerID = -1;
 			}
 
 		}
@@ -107,12 +107,11 @@ module mana {
 			public time:number = 0;
 			public value:any;
 
-			public constructor(timePm:number,valuePm:any)
+			public constructor(time:number,valuePm:any)
 			{
 				super();
-				timePm = flash.checkInt(timePm);
 
-				this.time = flash.checkInt(timePm);
+				this.time = time;
 				this.value = valuePm;
 			}
 

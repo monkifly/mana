@@ -1,39 +1,32 @@
 module mana {
-	export module core {
-		export class Singleton extends mana.core.BaseModel {
 
-			public static _instanceDictionary:flash.Dictionary;
+    export class Singleton extends BaseModel {
+        private static _instanceDictionary: any = {};
+	
+        public constructor() {
+            super();
+        		var className:string = egret.getQualifiedClassName(this);
+        		
+        		if(Singleton._instanceDictionary[className] != null)
+        			throw new Error(className+" is single instance!!!");
+        		else
+        			Singleton._instanceDictionary[className] = this;
+        }
 
-			public constructor()
-			{
-				super();
-				var className:string = egret.getQualifiedClassName(this);
-				var classReference:any = <any>flash.getDefinitionByName(className);
-				if(mana.core.Singleton._instanceDictionary.getItem(classReference) != null)
-					throw new flash.Error(className + " is single instance!!!").message;
-				else
-					mana.core.Singleton._instanceDictionary.setItem(classReference,this);
-			}
-
-			public destroyInstance()
-			{
-				var className:string = egret.getQualifiedClassName(this);
-				var classReference:any = <any>flash.getDefinitionByName(className);
-				mana.core.Singleton._instanceDictionary.delItem(classReference);
-			}
-
-			public static getInstance(classReference:any):mana.core.Singleton
-			{
-				if(mana.core.Singleton._instanceDictionary.getItem(classReference) != null)
-					return mana.core.Singleton._instanceDictionary.getItem(classReference);
-				var instance:any = new classReference();
-				mana.core.Singleton._instanceDictionary.setItem(classReference,instance);
-				return instance;
-			}
-
-		}
-	}
+        public static getInstance(...args: any[]) {
+            var className:string = egret.getQualifiedClassName(this);
+            if(Singleton._instanceDictionary[className] != null)
+        			return Singleton._instanceDictionary[className];
+        			
+        		var instance:any = this.create.apply(this,arguments);
+        		Singleton._instanceDictionary[className] = instance;
+        		return instance;
+        }
+	
+    	public destroyInstance():void{
+    		var className:string = egret.getQualifiedClassName(this);
+    		
+    		delete Singleton._instanceDictionary[className];
+    	}
+    }
 }
-
-mana.core.Singleton._instanceDictionary = new flash.Dictionary();
-flash.extendsClass("mana.core.Singleton","mana.core.BaseModel")

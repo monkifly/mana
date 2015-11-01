@@ -16,26 +16,16 @@ module mana {
 			{
 				return this._dataArray;
 			}
-
-			public set data(value:Array<any>)
-		{
-			flash.superSetter(mana.collection.UniqueCollection, this, "data", value);
-		}
 	
  			public get length():number
 			{
 				return this._dataArray.length;
 			}
-
-			public set length(value:number)
-		{
-			flash.superSetter(mana.collection.UniqueCollection, this, "length", value);
-		}
 	
  			private addItemInternal(item:mana.collection.IUniqueItem)
 			{
 				var sign:any = item.getUniqueSign();
-				var index:number = flash.checkInt(this._signArray.indexOf(sign));
+				var index:number = this._signArray.indexOf(sign);
 				if(index == -1)
 				{
 					this._signArray.push(sign);
@@ -49,8 +39,6 @@ module mana {
 
 			private removeItemAtInternal(index:number):any
 			{
-				index = flash.checkInt(index);
-
 				if(index >= 0 && index < this.length)
 				{
 					this._signArray.splice(index,1);
@@ -61,7 +49,7 @@ module mana {
 
 			private removeItemBySignInternal(sign:any):any
 			{
-				var index:number = flash.checkInt(this._signArray.indexOf(sign));
+				var index:number = this._signArray.indexOf(sign);
 				if(index != -1)
 				{
 					return this.removeItemAtInternal(index);
@@ -77,8 +65,6 @@ module mana {
 
 			public removeItemAt(index:number):any
 			{
-				index = flash.checkInt(index);
-
 				var item:any = this.removeItemAtInternal(index);
 				if(item)
 				{
@@ -99,8 +85,6 @@ module mana {
 
 			private setItemAtInternal(item:mana.collection.IUniqueItem,index:number)
 			{
-				index = flash.checkInt(index);
-
 				var sign:any = item.getUniqueSign();
 				if(index >= 0)
 				{
@@ -109,14 +93,12 @@ module mana {
 				}
 				else
 				{
-					throw new flash.Error("index invalid").message;
+					throw new Error("index invalid").message;
 				}
 			}
 
 			public setItemAt(item:mana.collection.IUniqueItem,index:number)
 			{
-				index = flash.checkInt(index);
-
 				this.setItemAtInternal(item,index);
 				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
@@ -124,9 +106,9 @@ module mana {
 			public setItems(ary:Array<any>)
 			{
 				var i:number = 0;
-				this._signArray.length = flash.checkInt(0);
-				this._dataArray.length = flash.checkInt(0);
-				for(i = flash.checkInt(0); i < ary.length; i++)
+				this._signArray.length = 0;
+				this._dataArray.length = 0;
+				for(i = 0; i < ary.length; i++)
 				{
 					this.setItemAtInternal(ary[i],i);
 				}
@@ -135,21 +117,19 @@ module mana {
 
 			public removeAll()
 			{
-				this._signArray.length = flash.checkInt(0);
-				this._dataArray.length = flash.checkInt(0);
+				this._signArray.length = 0;
+				this._dataArray.length = 0;
 				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public getItemAt(index:number):any
 			{
-				index = flash.checkInt(index);
-
 				return this._dataArray[index];
 			}
 
 			public getItemBySign(sign:any):any
 			{
-				var index:number = flash.checkInt(this._signArray.indexOf(sign));
+				var index:number = this._signArray.indexOf(sign);
 				if(index != -1)
 				{
 					return this._dataArray[index];
@@ -164,7 +144,7 @@ module mana {
 
 			public addItems(ary:Array<any>)
 			{
-				for(var i:number = flash.checkInt(0);i < ary.length; i++)
+				for(var i:number = 0;i < ary.length; i++)
 				{
 					this.addItemInternal(ary[i]);
 				}
@@ -173,11 +153,11 @@ module mana {
 
 			public addUniqueCollection(uc:mana.collection.UniqueCollection)
 			{
-				var len:number = flash.checkInt(uc.length);
+				var len:number = uc.length;
 				var item:mana.collection.IUniqueItem;
-				for(var i:number = flash.checkInt(0);i < len; i++)
+				for(var i:number = 0;i < len; i++)
 				{
-					item = <mana.collection.IUniqueItem>flash.As3As(uc.getItemAt(i),"mana.collection.IUniqueItem");
+					item = <mana.collection.IUniqueItem> uc.getItemAt(i);
 					this.addItemInternal(item);
 				}
 				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
@@ -185,11 +165,11 @@ module mana {
 
 			public removeUniqueCollection(uc:mana.collection.UniqueCollection)
 			{
-				var len:number = flash.checkInt(uc.length);
+				var len:number = uc.length;
 				var item:mana.collection.IUniqueItem;
-				for(var i:number = flash.checkInt(0);i < len; i++)
+				for(var i:number = 0;i < len; i++)
 				{
-					item = <mana.collection.IUniqueItem>flash.As3As(uc.getItemAt(i),"mana.collection.IUniqueItem");
+					item = <mana.collection.IUniqueItem>uc.getItemAt(i);
 					this.removeItemBySignInternal(item.getUniqueSign());
 				}
 				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
@@ -198,5 +178,3 @@ module mana {
 		}
 	}
 }
-
-flash.extendsClass("mana.collection.UniqueCollection","mana.core.BaseModel")

@@ -5,38 +5,38 @@ module mana {
 			public static formatTime(second:number,format:string = "hh:mm:ss"):string
 			{
 				format = format.toLocaleLowerCase();
-				var hour:number = flash.checkInt(0);
-				var min:number = flash.checkInt(0);
-				var sec:number = flash.checkInt(0);
+				var hour:number = 0;
+				var min:number = 0;
+				var sec:number = 0;
 				if(format.indexOf("h") != -1)
 				{
-					hour = flash.checkInt(second / 3600);
-					min = flash.checkInt((second - hour * 3600) / 60);
-					sec = flash.checkInt(second % 60);
+					hour = Math.floor(second / 3600);
+                    min = Math.floor((second - hour * 3600) / 60);
+                    sec = second % 60;
 				}
 				else
 				{
 					if(format.indexOf("m") != -1)
 					{
-						min = flash.checkInt(second / 60);
-						sec = flash.checkInt(second % 60);
+                        min = Math.floor(second / 60);
+                        sec = Math.floor(second % 60);
 					}
 					else
 					{
-						sec = flash.checkInt(second);
+						sec = second;
 					}
 				}
-				var str:string = format;
+                var str: string = format;
 				if(format.indexOf("hh") != -1)
-					str = str.replace("hh",flash.String(hour > 9?hour:"0" + hour));
+					str = str.replace("hh", (hour > 9?hour:"0" + hour).toString());
 				else if(format.indexOf("h") != -1)
 					str = str.replace("h",hour.toString());
 				if(format.indexOf("mm") != -1)
-					str = str.replace("mm",flash.String(min > 9?min:"0" + min));
+                    str = str.replace("mm",(min > 9 ? min : "0" + min).toString());
 				else if(format.indexOf("m") != -1)
 					str = str.replace("m",min.toString());
 				if(format.indexOf("ss") != -1)
-					str = str.replace("ss",flash.String(sec > 9?sec:"0" + sec));
+                    str = str.replace("ss",(sec > 9 ? sec : "0" + sec).toString());
 				else if(format.indexOf("s") != -1)
 					str = str.replace("s",sec.toString());
 				return str;
@@ -44,41 +44,46 @@ module mana {
 
 			public static formatDate(timeOrDate:any,format:string = "yyyy/nn/dd hh:mm:ss"):string
 			{
-				var date:flash.As3Date;
+				var date:Date;
 				var str:string = format;
-				if(flash.As3is(timeOrDate,flash.As3Date))
+                if(egret.is(timeOrDate,"Date"))
 				{
 					date = timeOrDate;
 				}
 				else
 				{
-					date = new flash.As3Date(timeOrDate);
+                    date = new Date(timeOrDate);
 				}
-				var yearStr:string = flash.String(date.fullYear);
+				var yearStr:string = date.getFullYear().toString();
+                var month:number = date.getMonth();
+                var dateD: number = date.getDate();
+                var hours: number = date.getHours();
+                var minutes: number = date.getMinutes();
+                var seconds: number = date.getSeconds();
 				if(format.indexOf("yyyy") != -1)
 					str = str.replace("yyyy",yearStr);
 				else if(format.indexOf("yy") != -1)
 					str = str.replace("yy",yearStr.substr(yearStr.length - 2,2));
 				if(format.indexOf("nn") != -1)
-					str = str.replace("nn",flash.String(date.month + 1 > 9?date.month + 1:"0" + (date.month + 1)));
+					str = str.replace("nn",(month + 1 > 9?month + 1:"0" + (month + 1)).toString());
 				else if(format.indexOf("n") != -1)
-					str = str.replace("n",(date.month + 1).toString());
+					str = str.replace("n",(month + 1).toString());
 				if(format.indexOf("dd") != -1)
-					str = str.replace("dd",flash.String(date.date > 9?date.date:"0" + date.date));
+                    str = str.replace("dd",(dateD > 9 ? dateD : "0" + dateD).toString());
 				else if(format.indexOf("d") != -1)
-					str = str.replace("d",date.date.toString());
+                    str = str.replace("d",dateD.toString());
 				if(format.indexOf("hh") != -1)
-					str = str.replace("hh",flash.String(date.hours > 9?date.hours:"0" + date.hours));
+                    str = str.replace("hh",(hours > 9 ? hours : "0" + hours).toString());
 				else if(format.indexOf("h") != -1)
-					str = str.replace("h",date.hours.toString());
+					str = str.replace("h",hours.toString());
 				if(format.indexOf("mm") != -1)
-					str = str.replace("mm",flash.String(date.minutes > 9?date.minutes:"0" + date.minutes));
+                    str = str.replace("mm",(minutes > 9 ? minutes : "0" + minutes).toString());
 				else if(format.indexOf("m") != -1)
-					str = str.replace("m",date.minutes.toString());
+					str = str.replace("m",minutes.toString());
 				if(format.indexOf("ss") != -1)
-					str = str.replace("ss",flash.String(date.seconds > 9?date.seconds:"0" + date.seconds));
+                    str = str.replace("ss",(seconds > 9 ? seconds : "0" + seconds).toString());
 				else if(format.indexOf("s") != -1)
-					str = str.replace("s",date.seconds.toString());
+					str = str.replace("s",seconds.toString());
 				return str;
 			}
 

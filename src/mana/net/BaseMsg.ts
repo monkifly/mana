@@ -3,25 +3,20 @@ module mana {
 		export class BaseMsg extends egret.HashObject {
 
 			public static MSG_MIN_LENGTH:number;
-			private _bytes:flash.ByteArray;
+			private _bytes:egret.ByteArray;
 			protected _msgID:number = 0;
-			private _callbacks:flash.Dictionary;
+			private _callbacks:any;
 
 			public constructor()
 			{
 				super();
-				this._callbacks = new flash.Dictionary();
+                this._callbacks = {};
 			}
 
-			public get bytes():flash.ByteArray
+			public get bytes():egret.ByteArray
 			{
 				return this._bytes;
 			}
-
-			public set bytes(value:flash.ByteArray)
-		{
-			flash.superSetter(mana.net.BaseMsg, this, "bytes", value);
-		}
 	
  			public doCallBacks()
 			{
@@ -64,10 +59,10 @@ module mana {
 				return this._msgID;
 			}
 
-			public decode(value:flash.ByteArray,needUncompress:boolean = false)
+			public decode(value:egret.ByteArray,needUncompress:boolean = false)
 			{
-				if(needUncompress)
-					value.uncompress();
+//				if(needUncompress)
+//					value.uncompress();
 				this._bytes = value;
 			}
 
