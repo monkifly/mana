@@ -133,7 +133,5 @@ class Main extends eui.UILayer {
         panel.horizontalCenter = 0;
         panel.verticalCenter = 0;
         this.addChild(panel);
-        
-        new mana.CusEvent("aa");
     }
 }

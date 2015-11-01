@@ -9,7 +9,7 @@ module mana {
 			public static maxHeight:number = NaN;
 			public static minWidth:number = NaN;
 			public static minHeight:number = NaN;
-			public static layers:Array<any>;
+			public static layers:Array<any> = [];
 			public static defaultLayerIndex:number = 0;
 			public static stage:egret.Stage;
 			public static setContainer(parent:egret.DisplayObjectContainer,minWidthPm:number,minHeightPm:number,maxWidthPm:number,maxHeightPm:number)
@@ -46,15 +46,11 @@ module mana {
 
 			public static setDefaultLayerIndex(index:number)
 			{
-				index = flash.checkInt(index);
-
-				mana.utils.LayerUtil.defaultLayerIndex = flash.checkInt(index);
+				mana.utils.LayerUtil.defaultLayerIndex = index;
 			}
 
 			public static createLayer(index:number,mouseEnabled:boolean)
 			{
-				index = flash.checkInt(index);
-
 				if(<any>!mana.utils.LayerUtil.getLayer(index))
 				{
 					var layer:egret.Sprite = new egret.Sprite();
@@ -66,8 +62,6 @@ module mana {
 
 			public static destroyLayer(index:number):egret.Sprite
 			{
-				index = flash.checkInt(index);
-
 				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(index);
 				if(layer)
 				{
@@ -80,8 +74,6 @@ module mana {
 
 			public static hideLayer(index:number)
 			{
-				index = flash.checkInt(index);
-
 				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(index);
 				if(layer.parent)
 					layer.parent.removeChild(layer);
@@ -89,20 +81,18 @@ module mana {
 
 			public static showLayer(index:number)
 			{
-				index = flash.checkInt(index);
-
 				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(index);
 				if(layer)
 				{
 					if(layer.parent)
 						return ;
-					var min:number = flash.checkInt(-1);
+					var min:number = -1;
 					var currIndex:number = 0;
 					var nextIndex:number = 0;
-					for(var i:number = flash.checkInt(0);i < mana.utils.LayerUtil.container.numChildren - 1; ++i)
+					for(var i:number = 0;i < mana.utils.LayerUtil.container.numChildren - 1; ++i)
 					{
-						currIndex = flash.checkInt(mana.utils.LayerUtil.layers.indexOf(mana.utils.LayerUtil.container.getChildAt(i)));
-						nextIndex = flash.checkInt(mana.utils.LayerUtil.layers.indexOf(mana.utils.LayerUtil.container.getChildAt(i + 1)));
+						currIndex = (mana.utils.LayerUtil.layers.indexOf(mana.utils.LayerUtil.container.getChildAt(i)));
+						nextIndex = (mana.utils.LayerUtil.layers.indexOf(mana.utils.LayerUtil.container.getChildAt(i + 1)));
 						if(currIndex < index && nextIndex > index)
 						{
 							mana.utils.LayerUtil.container.addChildAt(layer,i + 1);
@@ -116,24 +106,18 @@ module mana {
 
 			public static getLayer(index:number):egret.Sprite
 			{
-				index = flash.checkInt(index);
-
 				return mana.utils.LayerUtil.layers[index];
 			}
 
 			public static swapLayer(index1:number,index2:number)
 			{
-				index1 = flash.checkInt(index1);
-
-				index2 = flash.checkInt(index2);
-
 				mana.utils.LayerUtil.container.swapChildren(mana.utils.LayerUtil.getLayer(index1),mana.utils.LayerUtil.getLayer(index2));
 			}
 
 			public static addChild(child:egret.DisplayObject,layerIndex:number = -1):egret.DisplayObject
 			{
 				if(layerIndex == -1)
-					layerIndex = flash.checkInt(mana.utils.LayerUtil.defaultLayerIndex);
+					layerIndex = (mana.utils.LayerUtil.defaultLayerIndex);
 				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(layerIndex);
 				layer.addChild(child);
 				return child;
@@ -142,7 +126,7 @@ module mana {
 			public static addChildAt(child:egret.DisplayObject,childIndex:number,layerIndex:number = -1):egret.DisplayObject
 			{
 				if(layerIndex == -1)
-					layerIndex = flash.checkInt(mana.utils.LayerUtil.defaultLayerIndex);
+					layerIndex = (mana.utils.LayerUtil.defaultLayerIndex);
 				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(layerIndex);
 				if(layer)
 					layer.addChildAt(child,childIndex);
@@ -186,5 +170,3 @@ module mana {
 		}
 	}
 }
-
-mana.utils.LayerUtil.layers = [];

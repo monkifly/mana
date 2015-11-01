@@ -2,8 +2,8 @@ module mana {
 	export module utils {
 		export class StringUtil extends egret.HashObject {
 
-			public static NEWLINE_TOKENS:Array<any>;
-			public static WHITESPACE_TOKENS:Array<any>;
+            public static NEWLINE_TOKENS: Array<any> = new Array('\n','\r');;
+            public static WHITESPACE_TOKENS: Array<any> = new Array(' ','\t');;
 			public static replaceStr(content:string,reg:string,replacer:string):string
 			{
 				var myPattern:RegExp = new RegExp(reg,"g");
@@ -14,18 +14,18 @@ module mana {
 			{
 				if(str == null)
 					return '';
-				var len:number = flash.checkUint(rest.length);
+				var len:number = rest.length;
 				var args:Array<any>;
-				if(len == 1 && flash.As3is(rest[0],Array))
+				if(len == 1 && typeof( rest[0])=="Array")
 				{
-					args = </*Array*/any>flash.As3As(rest[0],Array);
-					len = flash.checkUint(args.length);
+					args = rest[0]
+					len = args.length;
 				}
 				else
 				{
 					args = rest;
 				}
-				for(var i:number = flash.checkInt(0);i < len; i++)
+				for(var i:number = 0;i < len; i++)
 				{
 					str = str.replace(new RegExp("\\{" + i + "\\}","g"),args[i]);
 				}
@@ -90,19 +90,16 @@ module mana {
 				return str;
 			}
 
-			public static getByteLength(str:string):number
-			{
-				if(<any>!str || str == "")
-					return 0;
-				var ba:flash.ByteArray = new flash.ByteArray();
-				ba.endian = flash.Endian.LITTLE_ENDIAN;
-				ba.writeMultiByte(str,"gb2312");
-				return ba.length;
-			}
+//			public static getByteLength(str:string):number
+//			{
+//				if(<any>!str || str == "")
+//					return 0;
+//				var ba:egret.ByteArray = new egret.ByteArray();
+//				ba.endian = egret.Endian.LITTLE_ENDIAN;
+//				ba.writeMultiByte(str,"gb2312");
+//				return ba.length;
+//			}
 
 		}
 	}
 }
-
-mana.utils.StringUtil.NEWLINE_TOKENS = new Array('\n','\r');
-mana.utils.StringUtil.WHITESPACE_TOKENS = new Array(' ','\t');

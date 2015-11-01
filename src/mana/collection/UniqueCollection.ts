@@ -1,6 +1,6 @@
 module mana {
 	export module collection {
-		export class UniqueCollection extends mana.core.BaseModel {
+		export class UniqueCollection extends mana.BaseModel {
 
 			private _dataArray:Array<any>;
 			private _signArray:Array<any>;
@@ -60,7 +60,7 @@ module mana {
 			public addItem(item:mana.collection.IUniqueItem)
 			{
 				this.addItemInternal(item);
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+				this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public removeItemAt(index:number):any
@@ -68,7 +68,7 @@ module mana {
 				var item:any = this.removeItemAtInternal(index);
 				if(item)
 				{
-					dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                    this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 				}
 				return item;
 			}
@@ -78,7 +78,7 @@ module mana {
 				var item:any = this.removeItemBySignInternal(sign);
 				if(item)
 				{
-					dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                    this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 				}
 				return item;
 			}
@@ -100,7 +100,7 @@ module mana {
 			public setItemAt(item:mana.collection.IUniqueItem,index:number)
 			{
 				this.setItemAtInternal(item,index);
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public setItems(ary:Array<any>)
@@ -112,14 +112,14 @@ module mana {
 				{
 					this.setItemAtInternal(ary[i],i);
 				}
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public removeAll()
 			{
 				this._signArray.length = 0;
 				this._dataArray.length = 0;
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public getItemAt(index:number):any
@@ -148,7 +148,7 @@ module mana {
 				{
 					this.addItemInternal(ary[i]);
 				}
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+				this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public addUniqueCollection(uc:mana.collection.UniqueCollection)
@@ -160,7 +160,7 @@ module mana {
 					item = <mana.collection.IUniqueItem> uc.getItemAt(i);
 					this.addItemInternal(item);
 				}
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 			public removeUniqueCollection(uc:mana.collection.UniqueCollection)
@@ -172,7 +172,7 @@ module mana {
 					item = <mana.collection.IUniqueItem>uc.getItemAt(i);
 					this.removeItemBySignInternal(item.getUniqueSign());
 				}
-				dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
+                this.dispatchEvent(new mana.collection.CollectionEvent(mana.collection.CollectionEvent.COLLECTION_CHANGE));
 			}
 
 		}
