@@ -1,0 +1,9 @@
+{
+  "frameworks" : [
+  ],
+  "modules" : [],
+  "source":"src",
+  "file_list" : [
+    "CusEvent.ts"
+  ]
+}
