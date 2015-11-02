@@ -1,87 +1,87 @@
 module mana {
 	export module utils {
-		export class LayerUtil extends egret.HashObject {
+		export class LayerUtil extends BaseUtil {
 
-			public static container:egret.DisplayObjectContainer;
-			public static width:number = NaN;
-			public static height:number = NaN;
-			public static maxWidth:number = NaN;
-			public static maxHeight:number = NaN;
-			public static minWidth:number = NaN;
-			public static minHeight:number = NaN;
-			public static layers:Array<any> = [];
-			public static defaultLayerIndex:number = 0;
-			public static stage:egret.Stage;
-			public static setContainer(parent:egret.DisplayObjectContainer,minWidthPm:number,minHeightPm:number,maxWidthPm:number,maxHeightPm:number)
+			public container:egret.DisplayObjectContainer;
+			public width:number = NaN;
+			public height:number = NaN;
+			public maxWidth:number = NaN;
+			public maxHeight:number = NaN;
+			public minWidth:number = NaN;
+			public minHeight:number = NaN;
+			public layers:Array<any> = [];
+			public defaultLayerIndex:number = 0;
+			public stage:egret.Stage;
+			public setContainer(parent:egret.DisplayObjectContainer,minWidthPm:number,minHeightPm:number,maxWidthPm:number,maxHeightPm:number)
 			{
-				mana.utils.LayerUtil.container = parent;
-				mana.utils.LayerUtil.minWidth = minWidthPm;
-				mana.utils.LayerUtil.minHeight = minHeightPm;
-				mana.utils.LayerUtil.maxWidth = maxWidthPm;
-				mana.utils.LayerUtil.maxHeight = maxHeightPm;
-				mana.utils.LayerUtil.stage = mana.utils.LayerUtil.container.stage;
-				mana.utils.LayerUtil.container.stage.addEventListener(egret.Event.RESIZE,mana.utils.LayerUtil.onStageReszie,null);
-				mana.utils.LayerUtil.onStageReszie();
+				this.container = parent;
+				this.minWidth = minWidthPm;
+				this.minHeight = minHeightPm;
+				this.maxWidth = maxWidthPm;
+				this.maxHeight = maxHeightPm;
+				this.stage = this.container.stage;
+				this.container.stage.addEventListener(egret.Event.RESIZE,this.onStageReszie,null);
+				this.onStageReszie();
 			}
 
-			public static getContainer():egret.DisplayObjectContainer
+			public getContainer():egret.DisplayObjectContainer
 			{
-				return mana.utils.LayerUtil.container;
+				return this.container;
 			}
 
-			public static getStage():egret.Stage
+			public getStage():egret.Stage
 			{
-				return mana.utils.LayerUtil.stage;
+				return this.stage;
 			}
 
-			public static getWidth():number
+			public getWidth():number
 			{
-				return mana.utils.LayerUtil.width;
+				return this.width;
 			}
 
-			public static getHeight():number
+			public getHeight():number
 			{
-				return mana.utils.LayerUtil.height;
+				return this.height;
 			}
 
-			public static setDefaultLayerIndex(index:number)
+			public setDefaultLayerIndex(index:number)
 			{
-				mana.utils.LayerUtil.defaultLayerIndex = index;
+				this.defaultLayerIndex = index;
 			}
 
-			public static createLayer(index:number,mouseEnabled:boolean)
+			public createLayer(index:number,mouseEnabled:boolean)
 			{
-				if(<any>!mana.utils.LayerUtil.getLayer(index))
+				if(<any>!this.getLayer(index))
 				{
 					var layer:egret.Sprite = new egret.Sprite();
 					layer.touchChildren = layer.touchEnabled = mouseEnabled;
-					mana.utils.LayerUtil.layers[index] = layer;
-					mana.utils.LayerUtil.showLayer(index);
+					this.layers[index] = layer;
+					this.showLayer(index);
 				}
 			}
 
-			public static destroyLayer(index:number):egret.Sprite
+			public destroyLayer(index:number):egret.Sprite
 			{
-				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(index);
+				var layer:egret.Sprite = this.getLayer(index);
 				if(layer)
 				{
 					if(layer.parent)
 						layer.parent.removeChild(layer);
-					mana.utils.LayerUtil.layers[index] = null;
+					this.layers[index] = null;
 				}
 				return layer;
 			}
 
-			public static hideLayer(index:number)
+			public hideLayer(index:number)
 			{
-				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(index);
+				var layer:egret.Sprite = this.getLayer(index);
 				if(layer.parent)
 					layer.parent.removeChild(layer);
 			}
 
-			public static showLayer(index:number)
+			public showLayer(index:number)
 			{
-				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(index);
+				var layer:egret.Sprite = this.getLayer(index);
 				if(layer)
 				{
 					if(layer.parent)
@@ -89,82 +89,82 @@ module mana {
 					var min:number = -1;
 					var currIndex:number = 0;
 					var nextIndex:number = 0;
-					for(var i:number = 0;i < mana.utils.LayerUtil.container.numChildren - 1; ++i)
+					for(var i:number = 0;i < this.container.numChildren - 1; ++i)
 					{
-						currIndex = (mana.utils.LayerUtil.layers.indexOf(mana.utils.LayerUtil.container.getChildAt(i)));
-						nextIndex = (mana.utils.LayerUtil.layers.indexOf(mana.utils.LayerUtil.container.getChildAt(i + 1)));
+						currIndex = (this.layers.indexOf(this.container.getChildAt(i)));
+						nextIndex = (this.layers.indexOf(this.container.getChildAt(i + 1)));
 						if(currIndex < index && nextIndex > index)
 						{
-							mana.utils.LayerUtil.container.addChildAt(layer,i + 1);
+							this.container.addChildAt(layer,i + 1);
 							break;
 						}
 					}
 					if(<any>!layer.parent)
-						mana.utils.LayerUtil.container.addChild(layer);
+						this.container.addChild(layer);
 				}
 			}
 
-			public static getLayer(index:number):egret.Sprite
+			public getLayer(index:number):egret.Sprite
 			{
-				return mana.utils.LayerUtil.layers[index];
+				return this.layers[index];
 			}
 
-			public static swapLayer(index1:number,index2:number)
+			public swapLayer(index1:number,index2:number)
 			{
-				mana.utils.LayerUtil.container.swapChildren(mana.utils.LayerUtil.getLayer(index1),mana.utils.LayerUtil.getLayer(index2));
+				this.container.swapChildren(this.getLayer(index1),this.getLayer(index2));
 			}
 
-			public static addChild(child:egret.DisplayObject,layerIndex:number = -1):egret.DisplayObject
+			public addChild(child:egret.DisplayObject,layerIndex:number = -1):egret.DisplayObject
 			{
 				if(layerIndex == -1)
-					layerIndex = (mana.utils.LayerUtil.defaultLayerIndex);
-				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(layerIndex);
+					layerIndex = (this.defaultLayerIndex);
+				var layer:egret.Sprite = this.getLayer(layerIndex);
 				layer.addChild(child);
 				return child;
 			}
 
-			public static addChildAt(child:egret.DisplayObject,childIndex:number,layerIndex:number = -1):egret.DisplayObject
+			public addChildAt(child:egret.DisplayObject,childIndex:number,layerIndex:number = -1):egret.DisplayObject
 			{
 				if(layerIndex == -1)
-					layerIndex = (mana.utils.LayerUtil.defaultLayerIndex);
-				var layer:egret.Sprite = mana.utils.LayerUtil.getLayer(layerIndex);
+					layerIndex = (this.defaultLayerIndex);
+				var layer:egret.Sprite = this.getLayer(layerIndex);
 				if(layer)
 					layer.addChildAt(child,childIndex);
 				return child;
 			}
 
-			public static removeChild(child:egret.DisplayObject):egret.DisplayObject
+			public removeChild(child:egret.DisplayObject):egret.DisplayObject
 			{
 				if(<any>!child)
 					return child;
-				if(child.parent && mana.utils.LayerUtil.layers.indexOf(child.parent))
+				if(child.parent && this.layers.indexOf(child.parent))
 				{
 					child.parent.removeChild(child);
 				}
 				return child;
 			}
 
-			private static onStageReszie(event:egret.Event = null)
+			private onStageReszie(event:egret.Event = null)
 			{
-				mana.utils.LayerUtil.width = mana.utils.LayerUtil.container.stage.stageWidth;
-				if(mana.utils.LayerUtil.width > mana.utils.LayerUtil.maxWidth)
-					mana.utils.LayerUtil.width = mana.utils.LayerUtil.maxWidth;
-				else if(mana.utils.LayerUtil.width < mana.utils.LayerUtil.minWidth)
-					mana.utils.LayerUtil.width = mana.utils.LayerUtil.minWidth;
-				mana.utils.LayerUtil.height = mana.utils.LayerUtil.container.stage.stageHeight;
-				if(mana.utils.LayerUtil.height > mana.utils.LayerUtil.maxHeight)
-					mana.utils.LayerUtil.height = mana.utils.LayerUtil.maxHeight;
-				else if(mana.utils.LayerUtil.height < mana.utils.LayerUtil.minHeight)
-					mana.utils.LayerUtil.height = mana.utils.LayerUtil.minHeight;
-				if(mana.utils.LayerUtil.container.stage.stageWidth > mana.utils.LayerUtil.width)
-					mana.utils.LayerUtil.container.x = (mana.utils.LayerUtil.container.stage.stageWidth - mana.utils.LayerUtil.width) / 2;
+				this.width = this.container.stage.stageWidth;
+				if(this.width > this.maxWidth)
+					this.width = this.maxWidth;
+				else if(this.width < this.minWidth)
+					this.width = this.minWidth;
+				this.height = this.container.stage.stageHeight;
+				if(this.height > this.maxHeight)
+					this.height = this.maxHeight;
+				else if(this.height < this.minHeight)
+					this.height = this.minHeight;
+				if(this.container.stage.stageWidth > this.width)
+					this.container.x = (this.container.stage.stageWidth - this.width) / 2;
 				else
-					mana.utils.LayerUtil.container.x = 0;
-				if(mana.utils.LayerUtil.container.stage.stageHeight > mana.utils.LayerUtil.height)
-					mana.utils.LayerUtil.container.y = (mana.utils.LayerUtil.container.stage.stageHeight - mana.utils.LayerUtil.height) / 2;
+					this.container.x = 0;
+				if(this.container.stage.stageHeight > this.height)
+					this.container.y = (this.container.stage.stageHeight - this.height) / 2;
 				else
-					mana.utils.LayerUtil.container.y = 0;
-				mana.utils.LayerUtil.container.scrollRect = new egret.Rectangle(0,0,mana.utils.LayerUtil.width,mana.utils.LayerUtil.height);
+					this.container.y = 0;
+				this.container.scrollRect = new egret.Rectangle(0,0,this.width,this.height);
 			}
 
 		}
