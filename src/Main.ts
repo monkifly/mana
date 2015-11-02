@@ -125,6 +125,18 @@ class Main extends eui.UILayer {
         button.verticalCenter = 0;
         this.addChild(button);
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        
+        game.init();
+        var str: string = "{0}adfas{1}";
+        var str1 = game.stringUtil.substitute(str,1,99);
+        var str2 = game.stringUtil.substitute(str,[1,"-----2341"]);
+        console.log(str1);
+        console.log(str2);
+        
+        game.sysTest.startSecondTicker();
+        console.log(game.commonUtil.formatTime(562));
+        console.log(game.commonUtil.formatDate("1999-10-20 12:02:28"));
+        console.log(game.commonUtil.formatDate(523412341234));
     }
 
     private onButtonClick(e: egret.TouchEvent) {
@@ -133,5 +145,6 @@ class Main extends eui.UILayer {
         panel.horizontalCenter = 0;
         panel.verticalCenter = 0;
         this.addChild(panel);
+        game.sysTest.stopSecondTicker();
     }
 }

@@ -1,8 +1,8 @@
 module mana {
 	export module utils {
-		export class CommonUtil extends egret.HashObject {
+		export class CommonUtil extends BaseUtil {
 
-			public static formatTime(second:number,format:string = "hh:mm:ss"):string
+			public formatTime(second:number,format:string = "hh:mm:ss"):string
 			{
 				format = format.toLocaleLowerCase();
 				var hour:number = 0;
@@ -42,7 +42,7 @@ module mana {
 				return str;
 			}
 
-			public static formatDate(timeOrDate:any,format:string = "yyyy/nn/dd hh:mm:ss"):string
+			public formatDate(timeOrDate:any,format:string = "yyyy/nn/dd hh:mm:ss"):string
 			{
 				var date:Date;
 				var str:string = format;
@@ -87,19 +87,19 @@ module mana {
 				return str;
 			}
 
-			public static getBitValue(value:number,fromBit:number = 0,toBit:number = 31):number
+			public getBitValue(value:number,fromBit:number = 0,toBit:number = 31):number
 			{
 				return toBit - fromBit + 1 < 32?(value >>> fromBit) & ((1 << (toBit - fromBit + 1)) - 1):value;
 			}
 
-			public static getBitValueByLen(value:number,fromBit:number = 0,len:number = 32):number
+			public getBitValueByLen(value:number,fromBit:number = 0,len:number = 32):number
 			{
 				return len < 32?(value >>> fromBit) & ((1 << len) - 1):value;
 			}
 
-			public static getRotation(fX:number,fY:number,tX:number,tY:number):number
+			public getRotation(fX:number,fY:number,tX:number,tY:number):number
 			{
-				var rotation:number = <any>0;
+				var rotation:number = 0;
 				var dx:number = tX - fX;
 				var dy:number = tY - fY;
 				var d:number = Math.sqrt(dx * dx + dy * dy);

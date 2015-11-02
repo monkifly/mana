@@ -9,6 +9,17 @@ module mana {
 				super();
 			}
 
+			public startSecondTicker():void{
+                var timerUtil: mana.utils.TimerUtil = mana.utils.TimerUtil.getInstance();
+                timerUtil.addSecondExecute(this.onSecond, this);
+			}
+			public stopSecondTicker():void{
+                var timerUtil: mana.utils.TimerUtil = mana.utils.TimerUtil.getInstance();
+                timerUtil.removeSecondExecute(this.onSecond);
+			}
+            protected onSecond():void{
+                
+            }
 		}
 	}
 }

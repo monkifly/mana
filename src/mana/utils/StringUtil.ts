@@ -1,22 +1,21 @@
 module mana {
 	export module utils {
-		export class StringUtil extends egret.HashObject {
-
-            public static NEWLINE_TOKENS: Array<any> = new Array('\n','\r');;
-            public static WHITESPACE_TOKENS: Array<any> = new Array(' ','\t');;
-			public static replaceStr(content:string,reg:string,replacer:string):string
+		export class StringUtil extends BaseUtil {
+            public NEWLINE_TOKENS: Array<any> = new Array('\n','\r');
+            public WHITESPACE_TOKENS: Array<any> = new Array(' ','\t');
+			public replaceStr(content:string,reg:string,replacer:string):string
 			{
 				var myPattern:RegExp = new RegExp(reg,"g");
 				return content.replace(myPattern,replacer);
 			}
 
-			public static substitute(str:string,...rest):string
+			public substitute(str:string,...rest):string
 			{
 				if(str == null)
 					return '';
 				var len:number = rest.length;
 				var args:Array<any>;
-				if(len == 1 && typeof( rest[0])=="Array")
+                if(len == 1 && rest[0] instanceof Array)
 				{
 					args = rest[0]
 					len = args.length;
@@ -32,7 +31,7 @@ module mana {
 				return str;
 			}
 
-			public static count(haystack:string,needle:string,offset:number = 0,length:number = 0):number
+			public count(haystack:string,needle:string,offset:number = 0,length:number = 0):number
 			{
 				if(length === 0)
 					length = haystack.length;
@@ -46,7 +45,7 @@ module mana {
 				return result;
 			}
 
-			public static trim(str:string,charList:Array<any> = null):string
+			public trim(str:string,charList:Array<any> = null):string
 			{
 				var list:Array<any>;
 				if(charList)
@@ -55,20 +54,20 @@ module mana {
 				}
 				else
 				{
-					list = mana.utils.StringUtil.WHITESPACE_TOKENS.concat(mana.utils.StringUtil.NEWLINE_TOKENS);
+					list = this.WHITESPACE_TOKENS.concat(this.NEWLINE_TOKENS);
 				}
-				str = mana.utils.StringUtil.trimLeft(str,list);
-				str = mana.utils.StringUtil.trimRight(str,list);
+				str = this.trimLeft(str,list);
+				str = this.trimRight(str,list);
 				return str;
 			}
 
-			public static trimLeft(str:string,charList:Array<any> = null):string
+			public trimLeft(str:string,charList:Array<any> = null):string
 			{
 				var list:Array<any>;
 				if(charList)
 					list = charList;
 				else
-					list = mana.utils.StringUtil.WHITESPACE_TOKENS.concat(mana.utils.StringUtil.NEWLINE_TOKENS);
+					list = this.WHITESPACE_TOKENS.concat(this.NEWLINE_TOKENS);
 				while(list.toString().indexOf(str.substr(0,1)) > -1 && str.length > 0)
 				{
 					str = str.substr(1);
@@ -76,13 +75,13 @@ module mana {
 				return str;
 			}
 
-			public static trimRight(str:string,charList:Array<any> = null):string
+			public trimRight(str:string,charList:Array<any> = null):string
 			{
 				var list:Array<any>;
 				if(charList)
 					list = charList;
 				else
-					list = mana.utils.StringUtil.WHITESPACE_TOKENS.concat(mana.utils.StringUtil.NEWLINE_TOKENS);
+					list = this.WHITESPACE_TOKENS.concat(this.NEWLINE_TOKENS);
 				while(list.toString().indexOf(str.substr(str.length - 1)) > -1 && str.length > 0)
 				{
 					str = str.substr(0,str.length - 1);
@@ -90,7 +89,7 @@ module mana {
 				return str;
 			}
 
-//			public static getByteLength(str:string):number
+//			public getByteLength(str:string):number
 //			{
 //				if(<any>!str || str == "")
 //					return 0;
