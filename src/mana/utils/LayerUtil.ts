@@ -49,20 +49,21 @@ module mana {
 				this.defaultLayerIndex = index;
 			}
 
-			public createLayer(index:number,mouseEnabled:boolean)
+			public createLayer(index:number,touchEnabled:boolean, touchChildren:boolean)
 			{
 				if(<any>!this.getLayer(index))
 				{
-					var layer:egret.Sprite = new egret.Sprite();
-					layer.touchChildren = layer.touchEnabled = mouseEnabled;
+					var layer:eui.Group = new eui.Group();
+                    layer.touchChildren = touchChildren;
+                    layer.touchEnabled = touchEnabled;
 					this.layers[index] = layer;
 					this.showLayer(index);
 				}
 			}
 
-			public destroyLayer(index:number):egret.Sprite
+			public destroyLayer(index:number):eui.Group
 			{
-				var layer:egret.Sprite = this.getLayer(index);
+				var layer:eui.Group = this.getLayer(index);
 				if(layer)
 				{
 					if(layer.parent)
@@ -74,14 +75,14 @@ module mana {
 
 			public hideLayer(index:number)
 			{
-				var layer:egret.Sprite = this.getLayer(index);
+				var layer:eui.Group = this.getLayer(index);
 				if(layer.parent)
 					layer.parent.removeChild(layer);
 			}
 
 			public showLayer(index:number)
 			{
-				var layer:egret.Sprite = this.getLayer(index);
+				var layer:eui.Group = this.getLayer(index);
 				if(layer)
 				{
 					if(layer.parent)
@@ -104,7 +105,7 @@ module mana {
 				}
 			}
 
-			public getLayer(index:number):egret.Sprite
+			public getLayer(index:number):eui.Group
 			{
                 if(index < 0)
                     index = this.defaultLayerIndex;
@@ -120,7 +121,7 @@ module mana {
 			{
 				if(layerIndex == -1)
 					layerIndex = (this.defaultLayerIndex);
-				var layer:egret.Sprite = this.getLayer(layerIndex);
+				var layer:eui.Group = this.getLayer(layerIndex);
 				layer.addChild(child);
 				return child;
 			}
@@ -129,7 +130,7 @@ module mana {
 			{
 				if(layerIndex == -1)
 					layerIndex = (this.defaultLayerIndex);
-				var layer:egret.Sprite = this.getLayer(layerIndex);
+				var layer:eui.Group = this.getLayer(layerIndex);
 				if(layer)
 					layer.addChildAt(child,childIndex);
 				return child;

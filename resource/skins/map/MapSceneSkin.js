@@ -13,6 +13,21 @@ var MapSceneSkin=(function (_super) {
 		var t = new eui.Group();
 		t.height = 800;
 		t.width = 480;
+		t.elementsContent = [this._Button1_i(),this._Button2_i()];
+		return t;
+	};
+	_proto._Button1_i = function () {
+		var t = new eui.Button();
+		t.label = "按钮";
+		t.x = 41;
+		t.y = 545;
+		return t;
+	};
+	_proto._Button2_i = function () {
+		var t = new eui.Button();
+		t.label = "按钮";
+		t.x = 322;
+		t.y = 544;
 		return t;
 	};
 	Object.defineProperty(_proto, "skinParts", {

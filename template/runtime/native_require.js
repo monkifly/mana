@@ -10,6 +10,7 @@ var game_file_list = [
 	"libs/modules/game/game.native.js",
 	"bin-debug/AssetAdapter.js",
 	"bin-debug/mana/components/BaseComponent.js",
+	"bin-debug/game/view/common/MainUI.js",
 	"bin-debug/mana/components/BaseScene.js",
 	"bin-debug/game/view/map/MapScene.js",
 	"bin-debug/Globle.js",

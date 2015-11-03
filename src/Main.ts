@@ -118,15 +118,16 @@ class Main extends eui.UILayer {
      * 创建场景界面
      * Create scene interface
      */
+    private layerRoot: eui.Group = new eui.Group();
     protected startCreateScene(): void {
-        var button = new eui.Button();
-        button.label = "Click!";
-        button.horizontalCenter = 0;
-        button.verticalCenter = 0;
-        this.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+//        var button = new eui.Button();
+//        button.label = "Click!";
+//        button.horizontalCenter = 0;
+//        button.verticalCenter = 0;
+//        this.addChild(button);
+//        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         
-        game.init();
+        game.initUtils();
         var str: string = "{0}adfas{1}";
         var str1 = game.stringUtil.substitute(str,1,99);
         var str2 = game.stringUtil.substitute(str,[1,"-----2341"]);
@@ -137,14 +138,31 @@ class Main extends eui.UILayer {
         console.log(game.commonUtil.formatTime(562));
         console.log(game.commonUtil.formatDate("1999-10-20 12:02:28"));
         console.log(game.commonUtil.formatDate(523412341234));
+        
+        this.addChild(this.layerRoot);
+        game.layerUtil.stage = this.stage;
+        game.layerUtil.setContainer(this.layerRoot,480,800,480,800);
+        game.layerUtil.createLayer(0,false,true);
+        game.layerUtil.createLayer(1,false,true);
+        game.layerUtil.createLayer(2,false,true);
+        
+        game.sceneUtil.setSceneRoot(game.layerUtil.getLayer(0)); 
+        game.sceneUtil.setGetSceneClass(function(sceneID):any{
+            if(sceneID==1){
+                return game.MapScene;
+            }
+        })
+        game.sceneUtil.runScene(1);
+        var mainUI: game.MainUI = new game.MainUI();
+        game.layerUtil.addChild(mainUI,2);
     }
 
-    private onButtonClick(e: egret.TouchEvent) {
-        var panel = new eui.Panel();
-        panel.title = "Title";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.addChild(panel);
-        game.sysTest.stopSecondTicker();
-    }
+//    private onButtonClick(e: egret.TouchEvent) {
+//        var panel = new eui.Panel();
+//        panel.title = "Title";
+//        panel.horizontalCenter = 0;
+//        panel.verticalCenter = 0;
+//        this.addChild(panel);
+//        game.sysTest.stopSecondTicker();
+//    }
 }
