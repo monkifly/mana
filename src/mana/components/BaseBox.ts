@@ -5,6 +5,8 @@ module mana.comp {
         protected _isModal: boolean = false;
         protected _modalAlpha: number = NaN;
         protected _closeButton: eui.Button;
+        public data: any;
+        public autoCloseByOther: boolean;
 
         public constructor(isModalPm: boolean = false,modalAlphaPm: number = 0.5) {
             super();
@@ -49,14 +51,14 @@ module mana.comp {
         public open(boxParent: egret.DisplayObjectContainer) {
             if(boxParent) {
                 boxParent.addChild(this);
-                dispatchEvent(new FlcEvent(FlcEvent.BOX_OPENED));
+                this.dispatchEvent(new mana.event.CompEvent(mana.event.CompEvent.BOX_OPENED));
             }
         }
 
         public close(): boolean {
             if(this.parent) {
                 this.parent.removeChild(this);
-                dispatchEvent(new FlcEvent(FlcEvent.BOX_CLOSED));
+                this.dispatchEvent(new mana.event.CompEvent(mana.event.CompEvent.BOX_CLOSED));
                 return true;
             }
             return false;

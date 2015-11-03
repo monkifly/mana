@@ -23,15 +23,6 @@ module mana.utils {
             if(this.hasBox(boxID))
                 return;
             this._creatingBoxIDs.push(boxID);
-//            UILoader.getInstance().loadBox(boxID,function() {
-//                var cIdx: number = flash.checkInt(this._creatingBoxIDs.indexOf(boxID));
-//                this._creatingBoxIDs.splice(cIdx,1);
-//                var classRef: any = <any>BoxDef.getBoxClass(boxID);
-//                var box: mana.comp.BaseBox = <any>new classRef();
-//                this._boxs[boxID] = box;
-//                if(callback != null)
-//                    callback.apply(null,params);
-//            });
         }
 
         public  hasBox(boxID: number): boolean {
@@ -51,7 +42,7 @@ module mana.utils {
         public  hasBoxShow(): boolean {
             for(var i: number = 0;i < this._boxs.length;++i) {
                 var box: mana.comp.BaseBox = <any>this._boxs[i];
-                if(box && box["isShowed"])
+                if(box && box.isShowed)
                     return true;
             }
             return false;
@@ -64,29 +55,27 @@ module mana.utils {
         }
 
         public  closeBoxByTrigger(triggers: Array<any>) {
-            for(var i: number = flash.checkInt(BoxDef.BOX_ID_BEGIN);i < BoxDef.BOX_ID_END;++i) {
-                var box: mana.comp.BaseBox = <any>this._boxs[i];
-                if(box && triggers.indexOf(box["triggerType"]) != -1)
-                    box["close"]();
+            for(var i: number = 0;i < this._boxs.length;++i) {
+                var box: mana.comp.BaseBox = this._boxs[i];
+                if(box && triggers.indexOf(box.triggerType) != -1)
+                    box.close();
             }
         }
 
         public  closeAllBox(includeScence: boolean = true) {
-            for(var i: number = flash.checkInt(BoxDef.BOX_ID_BEGIN);i < BoxDef.BOX_ID_END;++i) {
-                var box: mana.comp.BaseBox = <any>this._boxs[i];
-                if(<any>!includeScence && (flash.As3is(box,null,"S01SceneBox")))
-                    continue;
+            for(var i: number = 0;i < this._boxs.length;++i) {
+                var box: mana.comp.BaseBox = this._boxs[i];
                 if(box)
-                    box["close"]();
+                    box.close();
             }
         }
 
         public  closeAllBoxExcept(boxIDs: Array<any>) {
-            for(var i: number = flash.checkInt(BoxDef.BOX_ID_BEGIN);i < BoxDef.BOX_ID_END;++i) {
+            for(var i: number = 0; i < this._boxs.length; ++i) {
                 if(boxIDs.indexOf(i) == -1) {
-                    var box: mana.comp.BaseBox = <any>this._boxs[i];
+                    var box: mana.comp.BaseBox = this._boxs[i];
                     if(box)
-                        box["close"]();
+                        box.close();
                 }
             }
         }
@@ -95,54 +84,27 @@ module mana.utils {
             while(this._destroyBoxs.length) {
                 var box: mana.comp.BaseBox = <any>this._destroyBoxs.shift();
                 if(box)
-                    box["close"]();
-            }
-        }
-
-        public  closeDestroyBoxByElement(eleString: string,value: number) {
-            value = flash.checkInt(value);
-
-            for(var i: number = flash.checkInt(0);i < this._destroyBoxs.length;++i) {
-                var box: mana.comp.BaseBox = <any>this._destroyBoxs[i];
-                if(box && box["data"]) {
-                    var dataTmp: number = 0;
-                    if(box["hasOwnProperty"](eleString) && box[eleString] != null)
-                        dataTmp = flash.checkInt(flash.tranint(box[eleString]));
-                    else if(box["data"][eleString] != null)
-                        dataTmp = flash.checkInt(flash.tranint(box["data"][eleString]));
-                    if(dataTmp == value)
-                        box["close"]();
-                }
+                    box.close();
             }
         }
 
         public  autoCloseOther(selfBox: mana.comp.BaseBox) {
-            for(var i: number = flash.checkInt(BoxDef.BOX_ID_BEGIN);i < BoxDef.BOX_ID_END;++i) {
+            for(var i: number = 0; i < this._boxs.length; ++i) {
                 var box: mana.comp.BaseBox = <any>this._boxs[i];
                 if(box == selfBox)
                     continue;
-                if(box && box["autoCloseByOther"] && this.isBoxShowed(i))
-                    box["close"]();
+                if(box && box.autoCloseByOther && this.isBoxShowed(i))
+                    box.close();
             }
-        }
-
-        public  closeSceneBox() {
-            for(var i: number = flash.checkInt(BoxDef.BOX_ID_BEGIN);i < BoxDef.BOX_ID_END;++i) {
-                var box: mana.comp.BaseBox = <any>this._boxs[i];
-                if(box && (flash.As3is(box,null,"S01SceneBox")))
-                    box["close"]();
-            }
-            SceneUtil.changeScene(SceneUtil.curScene);
         }
 
         public  showBox(box: mana.comp.BaseBox,reverse: boolean = true,layer: number = -1) {
-            if(<any>!reverse || <any>!box["isShowed"]) {
-                if(layer == -1)
-                    layer = flash.checkInt(LayerDef.BOX);
-                box["open"](LayerUtil.getLayer(layer));
+            if(<any>!reverse || <any>!box.isShowed) {
+                var layerUtil: mana.utils.LayerUtil = mana.utils.LayerUtil.getInstance();
+                box.open(layerUtil.getLayer(layer));
             }
             else
-                box["close"]();
+                box.close();
         }
 
         public  displayDistroyBox(boxID: number,data: any = null,layer: number = -1) {
@@ -157,7 +119,7 @@ module mana.utils {
 //            });
         }
 
-        private  onBoxClosed(event: mana.flc.event.FlcEvent) {
+        private onBoxClosed(event: mana.event.CompEvent) {
             var box: mana.comp.BaseBox = <mana.comp.BaseBox>event.currentTarget;
             var index: number = this._destroyBoxs.indexOf(box);
             if(index != -1)

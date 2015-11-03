@@ -106,6 +106,8 @@ module mana {
 
 			public getLayer(index:number):egret.Sprite
 			{
+                if(index < 0)
+                    index = this.defaultLayerIndex;
 				return this.layers[index];
 			}
 

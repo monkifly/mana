@@ -26,6 +26,7 @@
     "resource/eui_skins/ScrollerSkin.exml",
     "resource/eui_skins/ToggleSwitchSkin.exml",
     "resource/eui_skins/VScrollBarSkin.exml",
-    "resource/eui_skins/VSliderSkin.exml"
+    "resource/eui_skins/VSliderSkin.exml",
+    "src/skins/map/MapSceneSkin.exml"
   ]
 }

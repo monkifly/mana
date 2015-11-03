@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MapSceneSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui">
+	<e:Group height="800" width="480"></e:Group>
+</e:Skin>

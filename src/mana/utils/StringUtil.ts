@@ -3,12 +3,18 @@ module mana {
 		export class StringUtil extends BaseUtil {
             public NEWLINE_TOKENS: Array<any> = new Array('\n','\r');
             public WHITESPACE_TOKENS: Array<any> = new Array(' ','\t');
-			public replaceStr(content:string,reg:string,replacer:string):string
-			{
-				var myPattern:RegExp = new RegExp(reg,"g");
-				return content.replace(myPattern,replacer);
-			}
-
+			/**
+    		 * 将content中符合reg的内容都用replacer替换
+    		 */
+            public static replaceStr(content: string,reg: string,replacer: string): string {
+                var myPattern: RegExp = new RegExp(reg,"g");
+                return content.replace(myPattern,replacer);
+            }
+		
+    		/**
+    		 * 使用传入的各个参数替换指定的字符串内的“{n}”标记
+    		 * N为索引，从0记起
+    		 * */
 			public substitute(str:string,...rest):string
 			{
 				if(str == null)
