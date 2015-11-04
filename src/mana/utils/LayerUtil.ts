@@ -20,8 +20,8 @@ module mana {
 				this.maxWidth = maxWidthPm;
 				this.maxHeight = maxHeightPm;
 				this.stage = this.container.stage;
-				this.container.stage.addEventListener(egret.Event.RESIZE,this.onStageReszie,null);
-				this.onStageReszie();
+//				this.container.stage.addEventListener(egret.Event.RESIZE,this.onStageReszie,null);
+//				this.onStageReszie();
 			}
 
 			public getContainer():egret.DisplayObjectContainer
