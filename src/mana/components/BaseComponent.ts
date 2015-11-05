@@ -20,10 +20,6 @@ module mana.comp {
         
         protected partAdded(name:string, instance:any) {
             super.partAdded(name,instance);
-            // 设置默认的关闭按键
-            if(name == 'container') {
-               
-            }
             if(this[name+"Tap"]){
                 instance.addEventListener(egret.TouchEvent.TOUCH_TAP,this[name + "Tap"],this);
             }

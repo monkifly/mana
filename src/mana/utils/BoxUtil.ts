@@ -27,7 +27,7 @@ module mana.utils {
             if(!box){
                 var boxClass: any = this.getBoxClass(boxID);
                 box = new boxClass();
-                box.once(mana.event.CompEvent.BOX_CLOSED,this.onBoxClosed,this);
+                box.addEventListener(mana.event.CompEvent.BOX_CLOSED,this.onBoxClosed,this);
                 this._boxs[boxID] = box;
             }
             return box;
@@ -101,6 +101,7 @@ module mana.utils {
 
         private onBoxClosed(event: mana.event.CompEvent) {
             var box: mana.comp.BaseBox = <mana.comp.BaseBox>event.currentTarget;
+            box.removeEventListener(mana.event.CompEvent.BOX_CLOSED,this.onBoxClosed,this);
             var index: number = this._boxs.indexOf(box);
             this._boxs[index] = null;
         }

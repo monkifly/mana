@@ -150,6 +150,26 @@
 				"isFolder":false,
 				"key":"tit_txt_g_stateCopy",
 				"name":"tit_txt_g_stateCopy"
+			},
+			{
+				"isFolder":false,
+				"key":"btn_0_5_0",
+				"name":"btn_0_5_0"
+			},
+			{
+				"isFolder":false,
+				"key":"btn_0_5_1",
+				"name":"btn_0_5_1"
+			},
+			{
+				"isFolder":false,
+				"key":"btn_txt_g_active",
+				"name":"btn_txt_g_active"
+			},
+			{
+				"isFolder":false,
+				"key":"btn_txt_g_attack",
+				"name":"btn_txt_g_attack"
 			}]
 		}
 	},

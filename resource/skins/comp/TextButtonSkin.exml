@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="TextButtonSkin" states="up,down,disabled" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image scale9Grid="9,9,75,19" alpha.disabled="0.5"
+	        
+	         left="0" right="0" top="0" bottom="0" source="btn_0_5_0" source.down="btn_0_5_1"/>
+	<e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8"
+	         size="20" fontFamily="Tahoma 'Microsoft Yahei'"
+	         textColor="0xFFFFFF" textColor.down="0xAAAAAA" verticalAlign="middle" textAlign="center" locked="true"/>
+</e:Skin>

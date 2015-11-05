@@ -25,7 +25,7 @@ var game_file_list = [
 	"bin-debug/mana/components/BaseButton.js",
 	"bin-debug/mana/components/BaseLabel.js",
 	"bin-debug/mana/components/BaseTip.js",
-	"bin-debug/mana/components/IcoLabel.js",
+	"bin-debug/mana/components/IconLabel.js",
 	"bin-debug/mana/components/IcoTitlePanel.js",
 	"bin-debug/mana/core/MemoryCache.js",
 	"bin-debug/mana/core/ModelManager.js",

@@ -1,15 +1,15 @@
 var skins;
 (function (skins) {
-	var IcoTextCloseBoxSkin=(function (_super) {
-		__extends(IcoTextCloseBoxSkin, _super);
-		function IcoTextCloseBoxSkin() {
+	var IconTextCloseBoxSkin=(function (_super) {
+		__extends(IconTextCloseBoxSkin, _super);
+		function IconTextCloseBoxSkin() {
 			_super.call(this);
 			
 			this.minHeight = 230;
 			this.minWidth = 450;
 			this.elementsContent = [this._Image1_i(),this.moveArea_i(),this.btnClose_i()];
 		}
-		var _proto = IcoTextCloseBoxSkin.prototype;
+		var _proto = IconTextCloseBoxSkin.prototype;
 	
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -27,14 +27,14 @@ var skins;
 			t.left = 0;
 			t.right = 0;
 			t.top = 0;
-			t.elementsContent = [this.icoTitleDisplay_i()];
+			t.elementsContent = [this.titleDisplay_i()];
 			return t;
 		};
-		_proto.icoTitleDisplay_i = function () {
-			var t = new eui.Image();
-			this.icoTitleDisplay = t;
+		_proto.titleDisplay_i = function () {
+			var t = new ();
 			t.horizontalCenter = 0;
-			t.source = "tit_txt_g_equipCopy";
+			t.source = tit_txt_g_equipCopy;
+			t.text = tit_txt_g_equipCopy;
 			t.verticalCenter = 0;
 			return t;
 		};
@@ -49,11 +49,11 @@ var skins;
 		};
 		Object.defineProperty(_proto, "skinParts", {
 			get: function () {
-				return ["icoTitleDisplay","moveArea","btnClose"];
+				return ["titleDisplay","moveArea","btnClose"];
 			},
 			enumerable: true,
 			configurable: true
 		});
-		return IcoTextCloseBoxSkin;
+		return IconTextCloseBoxSkin;
 	})(eui.Skin);
 })(skins || (skins = {}));

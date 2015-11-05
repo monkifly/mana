@@ -19,6 +19,8 @@ module mana {
 				this.minHeight = minHeightPm;
 				this.maxWidth = maxWidthPm;
 				this.maxHeight = maxHeightPm;
+                this.width = minWidthPm;
+                this.height = minHeightPm;
 				this.stage = this.container.stage;
 //				this.container.stage.addEventListener(egret.Event.RESIZE,this.onStageReszie,null);
 //				this.onStageReszie();

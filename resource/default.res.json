@@ -145,5 +145,27 @@
 		"name":"tit_txt_g_stateCopy",
 		"type":"image",
 		"url":"assets/map/tit_txt_g_stateCopy.png"
+	},
+	{
+		"name":"btn_0_5_1",
+		"scale9grid":"9,9,73,19",
+		"type":"image",
+		"url":"assets/comp/btn_0_5_1.png"
+	},
+	{
+		"name":"btn_0_5_0",
+		"scale9grid":"8,9,75,19",
+		"type":"image",
+		"url":"assets/comp/btn_0_5_0.png"
+	},
+	{
+		"name":"btn_txt_g_attack",
+		"type":"image",
+		"url":"assets/map/btn_txt_g_attack.png"
+	},
+	{
+		"name":"btn_txt_g_active",
+		"type":"image",
+		"url":"assets/map/btn_txt_g_active.png"
 	}]
 }

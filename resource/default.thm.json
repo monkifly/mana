@@ -29,7 +29,9 @@
     "resource/skins/common/MainUISkin.exml",
     "resource/skins/comp/CloseButtonSkin.exml",
     "resource/skins/comp/BaseCloseBoxSkin.exml",
-    "resource/skins/comp/IcoTextCloseBoxSkin.exml",
+    "resource/skins/comp/IconButtonSkin.exml",
+    "resource/skins/comp/IconTextCloseBoxSkin.exml",
+    "resource/skins/comp/TextButtonSkin.exml",
     "resource/skins/map/IcoTextTestBoxSkin.exml",
     "resource/skins/map/MapSceneSkin.exml",
     "resource/skins/map/TestBoxSkin.exml"

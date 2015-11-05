@@ -3,12 +3,12 @@ module mana {
 		export class TimerUtil extends BaseUtil {
 
 			public _secondTimer:egret.Timer;
-            public _secondObjs: Array<TimerObj> = [];
+            public _secondObjs: Array<SecondObj> = [];
 
 			public addSecondExecute(fun:Function, thisObject?:any)
 			{
                 this.removeSecondExecute(fun);
-                var t: TimerObj = new TimerObj(fun,thisObject);
+                var t: SecondObj = new SecondObj(fun,thisObject);
 				if(!this._secondTimer)
 				{
 					this._secondTimer = new egret.Timer(1000);
@@ -42,14 +42,14 @@ module mana {
 			private onSecondTimer(event:egret.TimerEvent)
 			{
                 for(var i = 0;i < this._secondObjs.length; ++i) {
-                    var t: TimerObj = this._secondObjs[i];
+                    var t: SecondObj = this._secondObjs[i];
                     t.callback.call(t.thisObject);
                 }
 			}
 
 		}
 
-		class TimerObj{
+		class SecondObj{
 			public callback:Function;
             public thisObject: any;
 

@@ -1,5 +1,5 @@
 module mana.comp {
-    export class IcoLabel extends eui.Image{
+    export class IconLabel extends eui.Image{
         private _textSource:string;
 
         public set text(icoSource){

@@ -3,7 +3,7 @@ module mana.comp {
         protected _triggerType: number = 0;
         protected _modalMC: egret.Sprite;
         protected _isModal: boolean = false;
-        protected _modalAlpha: number = NaN;
+        protected _modalAlpha: number = 0.5;
         protected _closeButton: eui.Button;
         public data: any;
         public autoCloseByOther: boolean;
@@ -16,6 +16,17 @@ module mana.comp {
             this.addEventListener(egret.Event.REMOVED_FROM_STAGE,this.onRemovedFromStage,this);
         }
 
+        protected partAdded(name: string,instance: any) {
+            super.partAdded(name,instance);
+            // 设置默认的关闭按键
+            if(name == "panel") {
+                if(this[name]["btnClose"]){
+                    this[name]["btnClose"].addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCloseTap,this);
+                }
+            }else if(name == "btnClose"){
+                this[name].addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCloseTap,this);
+            }
+        }
         public get modalAlpha(): number {
             return this._modalAlpha;
         }
@@ -65,15 +76,13 @@ module mana.comp {
         }
 
         protected createModalMC() {
-            if(<any>!this._modalMC)
+            if(!this._modalMC)
                 this._modalMC = new egret.Sprite();
             var layerUtil: mana.utils.LayerUtil = mana.utils.LayerUtil.getInstance();
             this._modalMC.graphics.clear();
-            this._modalMC.graphics.beginFill(0x000000,this._modalAlpha);
-            this._modalMC.graphics.drawRect(0,0,1,1);
+            this._modalMC.graphics.beginFill(0xff0000,this._modalAlpha);
+            this._modalMC.graphics.drawRect(0,0,layerUtil.getWidth(),layerUtil.getHeight());
             this._modalMC.graphics.endFill();
-            this._modalMC.width = layerUtil.getWidth();
-            this._modalMC.height = layerUtil.getHeight();
             this.parent.addChildAt(this._modalMC,this.parent.getChildIndex(this));
         }
 
@@ -89,7 +98,7 @@ module mana.comp {
             }
         }
 
-        public setCloseButton(button: BaseButton = null) {
+        public setCloseButton(button: eui.Button = null) {
             if(this._closeButton) {
                 this._closeButton.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.onCloseTap,this);
             }
