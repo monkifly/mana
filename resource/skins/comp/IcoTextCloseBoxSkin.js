@@ -7,7 +7,7 @@ var skins;
 			
 			this.minHeight = 230;
 			this.minWidth = 450;
-			this.elementsContent = [this._Image1_i(),this.moveArea_i(),this.closeButton_i()];
+			this.elementsContent = [this._Image1_i(),this.moveArea_i(),this.btnClose_i()];
 		}
 		var _proto = IcoTextCloseBoxSkin.prototype;
 	
@@ -34,12 +34,13 @@ var skins;
 			var t = new eui.Image();
 			this.icoTitleDisplay = t;
 			t.horizontalCenter = 0;
+			t.source = "tit_txt_g_equipCopy";
 			t.verticalCenter = 0;
 			return t;
 		};
-		_proto.closeButton_i = function () {
+		_proto.btnClose_i = function () {
 			var t = new eui.Button();
-			this.closeButton = t;
+			this.btnClose = t;
 			t.label = "close";
 			t.skinName = "skins.CloseSkin";
 			t.x = 406;
@@ -48,7 +49,7 @@ var skins;
 		};
 		Object.defineProperty(_proto, "skinParts", {
 			get: function () {
-				return ["icoTitleDisplay","moveArea","closeButton"];
+				return ["icoTitleDisplay","moveArea","btnClose"];
 			},
 			enumerable: true,
 			configurable: true

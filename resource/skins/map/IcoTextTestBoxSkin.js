@@ -11,10 +11,10 @@ var IcoTextTestBoxSkin=(function (_super) {
 
 	_proto.panel_i = function () {
 		var t = new ();
+		t.horizontalCenter = 0;
 		t.icoTitle = tit_txt_g_stateCopy;
 		t.skinName = skins.IcoTextCloseBoxSkin;
-		t.x = 14;
-		t.y = 45;
+		t.verticalCenter = 0;
 		return t;
 	};
 	Object.defineProperty(_proto, "skinParts", {
