@@ -5,9 +5,15 @@ module game {
 	 *
 	 */
 	export class MapScene extends mana.comp.BaseScene {
+    	
+    	
 		constructor() {
             super(1);
             this.skinName = "MapSceneSkin";
+		}
+		
+		btnTest1Tap(){
+            boxUtil.displayBox(1);
 		}
 	}
 }

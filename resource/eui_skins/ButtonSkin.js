@@ -29,10 +29,12 @@ var skins;
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
 			this._Image1 = t;
-			t.percentHeight = 100;
+			t.bottom = 0;
+			t.left = 0;
+			t.right = 0;
 			t.scale9Grid = new egret.Rectangle(1,3,8,8);
 			t.source = "button_up_png";
-			t.percentWidth = 100;
+			t.top = 0;
 			return t;
 		};
 		_proto.labelDisplay_i = function () {

@@ -119,5 +119,31 @@
 		"name":"track_sb_png",
 		"type":"image",
 		"url":"assets/ScrollBar/track_sb.png"
+	},
+	{
+		"name":"btn_close_0",
+		"type":"image",
+		"url":"assets/comp/btn_close_0.png"
+	},
+	{
+		"name":"btn_close_1",
+		"type":"image",
+		"url":"assets/comp/btn_close_1.png"
+	},
+	{
+		"name":"base_box_bg",
+		"scale9grid":"62,55,323,475",
+		"type":"image",
+		"url":"assets/comp/base_box_bg.png"
+	},
+	{
+		"name":"tit_txt_g_equipCopy",
+		"type":"image",
+		"url":"assets/map/tit_txt_g_equipCopy.png"
+	},
+	{
+		"name":"tit_txt_g_stateCopy",
+		"type":"image",
+		"url":"assets/map/tit_txt_g_stateCopy.png"
 	}]
 }

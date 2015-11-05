@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MapSceneSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui">
+<e:Skin class="MapSceneSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group height="800" width="480">
-		<e:Button label="按钮" x="41" y="545"/>
-		<e:Button label="按钮" x="322" y="544"/>
+		<e:Button id="btnTest1" label="Test1" x="41" y="545"/>
+		<e:Button id="btnTest2" label="Test2" x="322" y="544"/>
 </e:Group>
 </e:Skin>

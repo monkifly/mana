@@ -1,8 +1,14 @@
 module mana.utils {
     export class BoxUtil extends BaseUtil {
         public  _boxs: Array<any> = [];
-        public _destroyBoxs: Array<any> = [];
-        public _creatingBoxIDs: Array<any> = [];
+        
+        private getBoxClass: Function;
+		/***
+		 * 设置一个通过boxID获得对应类名的方法
+		 * */
+        public setGetBoxClass(fun: Function): void {
+            this.getBoxClass = fun;
+        }
         public  displayBox(boxID: number,data: any = null,reverse: boolean = true,triggerType: number = 0,layer: number = -1) {
             var box: mana.comp.BaseBox = this.getBox(boxID);
             if(box) {
@@ -10,19 +16,6 @@ module mana.utils {
                 box.triggerType = triggerType;
                 this.showBox(box,reverse,layer);
             }
-            else {
-                this.createBox(boxID,function() {
-                    this.displayBox(boxID,data,reverse,triggerType,layer);
-                });
-            }
-        }
-
-        public  createBox(boxID: number,callback: Function = null,...params) {
-            if(this._creatingBoxIDs.indexOf(boxID) != -1)
-                return;
-            if(this.hasBox(boxID))
-                return;
-            this._creatingBoxIDs.push(boxID);
         }
 
         public  hasBox(boxID: number): boolean {
@@ -30,7 +23,14 @@ module mana.utils {
         }
 
         public  getBox(boxID: number): mana.comp.BaseBox {
-            return this._boxs[boxID];
+            var box: mana.comp.BaseBox = this._boxs[boxID];
+            if(!box){
+                var boxClass: any = this.getBoxClass(boxID);
+                box = new boxClass();
+                box.once(mana.event.CompEvent.BOX_CLOSED,this.onBoxClosed,this);
+                this._boxs[boxID] = box;
+            }
+            return box;
         }
 
         public  isBoxShowed(boxID: number): boolean {
@@ -80,14 +80,6 @@ module mana.utils {
             }
         }
 
-        public  closeAllDestroyBox() {
-            while(this._destroyBoxs.length) {
-                var box: mana.comp.BaseBox = <any>this._destroyBoxs.shift();
-                if(box)
-                    box.close();
-            }
-        }
-
         public  autoCloseOther(selfBox: mana.comp.BaseBox) {
             for(var i: number = 0; i < this._boxs.length; ++i) {
                 var box: mana.comp.BaseBox = <any>this._boxs[i];
@@ -107,23 +99,10 @@ module mana.utils {
                 box.close();
         }
 
-        public  displayDistroyBox(boxID: number,data: any = null,layer: number = -1) {
-//            var box: mana.comp.BaseBox;
-//            UILoader.getInstance().loadBox(boxID,function() {
-//                var classRef: any = <any>BoxDef.getBoxClass(boxID);
-//                box = new classRef();
-//                box["data"] = data;
-//                box["addEventListener"](FlcEvent.BOX_CLOSED,this.onBoxClosed);
-//                this._destroyBoxs.push(box);
-//                this.showBox(box,false,layer);
-//            });
-        }
-
         private onBoxClosed(event: mana.event.CompEvent) {
             var box: mana.comp.BaseBox = <mana.comp.BaseBox>event.currentTarget;
-            var index: number = this._destroyBoxs.indexOf(box);
-            if(index != -1)
-                this._destroyBoxs.splice(index,1);
+            var index: number = this._boxs.indexOf(box);
+            this._boxs[index] = null;
         }
 
     }

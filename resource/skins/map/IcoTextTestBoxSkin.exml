@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="IcoTextTestBoxSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:comp="mana.comp.*" xmlns:w="http://ns.egret.com/wing">
+	<comp:IcoTitlePanel id="panel" x="14" y="45" skinName="skins.IcoTextCloseBoxSkin" icoTitle="tit_txt_g_stateCopy"/>
+</e:Skin>

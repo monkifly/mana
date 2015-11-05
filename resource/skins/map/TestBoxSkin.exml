@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TestBoxSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui">
+	<e:Panel x="10" y="26" skinName="skins.BaseCloseBoxSkin" title="test">
+		<e:List height="200" width="200" x="34" y="63"/>
+		<e:Button label="按钮" x="167" y="251"/>
+	</e:Panel>
+</e:Skin>

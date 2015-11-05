@@ -147,12 +147,19 @@ class Main extends eui.UILayer {
         game.layerUtil.createLayer(2,false,true);
         
         game.sceneUtil.setSceneRoot(game.layerUtil.getLayer(0)); 
-        game.sceneUtil.setGetSceneClass(function(sceneID):any{
-            if(sceneID==1){
+        game.sceneUtil.setGetSceneClass(function(sceneID): any {
+            if(sceneID == 1) {
                 return game.MapScene;
             }
-        })
+        });
         game.sceneUtil.runScene(1);
+        
+        game.boxUtil.setGetBoxClass(function(boxID): any {
+            if(boxID == 1) {
+                return game.IcoTextBox;
+            }
+        })
+        
         var mainUI: game.MainUI = new game.MainUI();
         game.layerUtil.addChild(mainUI,2);
     }
