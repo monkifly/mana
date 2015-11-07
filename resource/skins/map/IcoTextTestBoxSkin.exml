@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="IcoTextTestBoxSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:comp="mana.comp.*" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="IcoTextTestBoxSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Panel id="panel" title="tit_txt_g_stateCopy" horizontalCenter="0" verticalCenter="0" skinName="skins.IconTextCloseBoxSkin">
 		<e:Button label="测试" x="40" y="177" skinName="TextButtonSkin" width="169" height="53"/>
 		<e:Button y="458" label="测试" skinName="TextButtonSkin" x="112"/>

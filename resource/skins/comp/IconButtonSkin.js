@@ -11,7 +11,8 @@ var IconButtonSkin=(function (_super) {
 			,
 			new eui.State ("down",
 				[
-					new eui.SetProperty("_Image1","source","btn_0_5_1")
+					new eui.SetProperty("_Image1","source","btn_0_5_1"),
+					new eui.SetProperty("iconDisplay","alpha",0.5)
 				])
 			,
 			new eui.State ("disabled",

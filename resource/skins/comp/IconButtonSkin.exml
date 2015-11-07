@@ -3,5 +3,5 @@
 	<e:Image scale9Grid="9,9,75,19" alpha.disabled="0.5"
 	        
 	         left="0" right="0" top="0" bottom="0" source="btn_0_5_0" source.down="btn_0_5_1"/>
-	<e:Image id="iconDisplay" alpha.down="0.5"horizontalCenter="0" verticalCenter="0"/>
+	<e:Image id="iconDisplay" alpha.down="0.5" horizontalCenter="0" verticalCenter="0"/>
 </e:Skin>

@@ -5,7 +5,7 @@ module game {
 	 *
 	 */
 	export class IcoTextBox extends mana.comp.BaseBox{
-        panel: mana.comp.IcoTitlePanel;
+        panel: eui.Panel;
 		public constructor() {
             super(false,1);
             this.skinName = "IcoTextTestBoxSkin";
@@ -17,8 +17,8 @@ module game {
 		
 		onEnter(){
             super.onEnter();
-            console.log(this.panel.icoTitle);
-            console.log(this.panel.icoTitleDisplay);
+            console.log(this.panel.title);
+            console.log(this.panel.titleDisplay);
 		}
 	}
 }
