@@ -7,7 +7,7 @@ module game {
 	export class IcoTextBox extends mana.comp.BaseBox{
         panel: eui.Panel;
 		public constructor() {
-            super(false,1);
+            super(false, 1);
             this.skinName = "IcoTextTestBoxSkin";
 		}
 		
