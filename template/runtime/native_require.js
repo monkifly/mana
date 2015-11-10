@@ -24,7 +24,6 @@ var game_file_list = [
 	"bin-debug/mana/collection/UniqueCollection.js",
 	"bin-debug/mana/components/BaseButton.js",
 	"bin-debug/mana/components/BaseLabel.js",
-	"bin-debug/mana/components/BaseMsgBox.js",
 	"bin-debug/mana/components/BaseTip.js",
 	"bin-debug/mana/components/IconLabel.js",
 	"bin-debug/mana/core/MemoryCache.js",

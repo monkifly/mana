@@ -25,7 +25,7 @@ module mana.utils {
                 args = args[0];
             }
             var msgClass: any = this.getMsgClass(type);
-            
+            var msgView = new msgClass();
 		}
 		
 		public setMsgClass(type:number, msgClass:any):void{
