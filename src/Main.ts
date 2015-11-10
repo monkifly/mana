@@ -142,11 +142,12 @@ class Main extends eui.UILayer {
         this.addChild(this.layerRoot);
         game.layerUtil.stage = this.stage;
         game.layerUtil.setContainer(this.layerRoot,480,800,480,800);
-        game.layerUtil.createLayer(0,false,true);
-        game.layerUtil.createLayer(1,false,true);
-        game.layerUtil.createLayer(2,false,true);
         
-        game.sceneUtil.setSceneRoot(game.layerUtil.getLayer(0)); 
+        for(var i = game.ui.LayerDef.LAYER_BEG;i < game.ui.LayerDef.LAYER_END;++i){
+            game.layerUtil.createLayer(i,false,true);
+        }
+        
+        game.sceneUtil.setSceneRoot(game.layerUtil.getLayer(game.ui.LayerDef.SCENE)); 
         game.sceneUtil.setGetSceneClass(function(sceneID): any {
             if(sceneID == 1) {
                 return game.MapScene;
@@ -161,7 +162,7 @@ class Main extends eui.UILayer {
         })
         
         var mainUI: game.MainUI = new game.MainUI();
-        game.layerUtil.addChild(mainUI,2);
+        game.layerUtil.addChild(mainUI,game.ui.LayerDef.BASE_UI);
     }
 
 //    private onButtonClick(e: egret.TouchEvent) {

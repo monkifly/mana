@@ -76,11 +76,13 @@ module mana.comp {
         }
 
         protected createModalMC() {
-            if(!this._modalMC)
+            if(!this._modalMC) {
                 this._modalMC = new egret.Sprite();
+                this._modalMC.touchEnabled = true;
+            }
             var layerUtil: mana.utils.LayerUtil = mana.utils.LayerUtil.getInstance();
             this._modalMC.graphics.clear();
-            this._modalMC.graphics.beginFill(0xff0000,this._modalAlpha);
+            this._modalMC.graphics.beginFill(0x00ff00,this._modalAlpha);
             this._modalMC.graphics.drawRect(0,0,layerUtil.getWidth(),layerUtil.getHeight());
             this._modalMC.graphics.endFill();
             this.parent.addChildAt(this._modalMC,this.parent.getChildIndex(this));

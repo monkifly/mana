@@ -7,7 +7,7 @@ var skins;
 			
 			this.minHeight = 230;
 			this.minWidth = 450;
-			this.elementsContent = [this._Image1_i(),this.moveArea_i(),this.closeButton_i()];
+			this.elementsContent = [this._Image1_i(),this.moveArea_i(),this.btnClose_i()];
 		}
 		var _proto = BaseCloseBoxSkin.prototype;
 	
@@ -50,18 +50,18 @@ var skins;
 			t.verticalCenter = 0;
 			return t;
 		};
-		_proto.closeButton_i = function () {
+		_proto.btnClose_i = function () {
 			var t = new eui.Button();
-			this.closeButton = t;
+			this.btnClose = t;
 			t.label = "close";
+			t.right = 10;
 			t.skinName = "skins.CloseSkin";
-			t.x = 406;
 			t.y = 4;
 			return t;
 		};
 		Object.defineProperty(_proto, "skinParts", {
 			get: function () {
-				return ["titleDisplay","moveArea","closeButton"];
+				return ["titleDisplay","moveArea","btnClose"];
 			},
 			enumerable: true,
 			configurable: true
