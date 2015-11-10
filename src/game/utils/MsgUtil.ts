@@ -10,14 +10,19 @@ module game.utils {
 		}
 		
 		public show(msg:any, ...args):void{
-//		    if(!isNaN(msg)){
+		    if(!isNaN(msg)){
 //                var info = sheetUitl.getInfo(msg);
 //                if(info.type==1){
 //                    Alert.show();
 //                }
-//		    }else{
-//                Alert.show(msg);
-//		    }
+		    }else{
+                var fun: Function;
+                if(args[args.length - 1] instanceof Function){
+                    fun = args[args.length - 1];
+                }
+                msg = game.stringUtil.substitute(msg,args);
+                game.ui.Alert.show(msg,fun);
+		    }
 		}
 	}
 }

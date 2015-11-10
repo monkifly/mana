@@ -74,6 +74,10 @@ module mana.comp {
             }
             return false;
         }
+        
+        protected exeOpenEffect():void{
+            
+        }
 
         protected createModalMC() {
             if(!this._modalMC) {
