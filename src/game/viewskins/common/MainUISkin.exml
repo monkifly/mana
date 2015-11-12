@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MainUISkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Button label="按钮" x="20" y="61"/>
+	<e:Button label="按钮" x="208" y="66"/>
+	<e:Button label="按钮" x="364" y="64"/>
+	<e:Group y="716" horizontalCenter="0">
+		<e:Button id="btn1" y="0" label="按钮" x="0" height="80" width="80"/>
+		<e:Button id="btn2" y="4" width="80" label="按钮" height="80" x="76"/>
+		<e:Button id="btn3" y="14" width="80" label="按钮" height="80" x="86"/>
+		<e:Button id="btn4" y="24" width="80" label="按钮" height="80" x="96"/>
+		<e:Button id="btn5" y="34" width="80" label="按钮" height="80" x="106"/>
+		<e:layout>
+			<e:HorizontalLayout/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

@@ -26,6 +26,7 @@
 	<script egret="lib" src="libs/modules/egret/egret.web.js" src-release="libs/modules/egret/egret.web.min.js"></script>
 	<script egret="lib" src="libs/modules/eui/eui.js" src-release="libs/modules/eui/eui.min.js"></script>
 	<script egret="lib" src="libs/modules/res/res.js" src-release="libs/modules/res/res.min.js"></script>
+	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
 	<script egret="lib" src="libs/modules/game/game.js" src-release="libs/modules/game/game.min.js"></script>
 	<script egret="lib" src="libs/modules/game/game.web.js" src-release="libs/modules/game/game.web.min.js"></script>
 	<!--modules_files_end-->
@@ -37,22 +38,31 @@
     <!--这个标签会被替换为项目中所有的 javascript 文件-->
     <!--game_files_start-->
 	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
+	<script egret="game" src="bin-debug/mana/core/BaseModel.js"></script>
+	<script egret="game" src="bin-debug/game/fight/FightRole.js"></script>
+	<script egret="game" src="bin-debug/game/fight/FightWeapon.js"></script>
+	<script egret="game" src="bin-debug/game/game.js"></script>
+	<script egret="game" src="bin-debug/game/GameInitiator.js"></script>
+	<script egret="game" src="bin-debug/mana/core/Singleton.js"></script>
+	<script egret="game" src="bin-debug/mana/core/SysManager.js"></script>
+	<script egret="game" src="bin-debug/game/systems/SysFight.js"></script>
 	<script egret="game" src="bin-debug/mana/utils/BaseUtil.js"></script>
 	<script egret="game" src="bin-debug/game/utils/MsgUtil.js"></script>
 	<script egret="game" src="bin-debug/mana/components/BaseComponent.js"></script>
 	<script egret="game" src="bin-debug/game/view/common/MainUI.js"></script>
 	<script egret="game" src="bin-debug/mana/components/BaseBox.js"></script>
 	<script egret="game" src="bin-debug/game/view/component/Alert.js"></script>
-	<script egret="game" src="bin-debug/game/view/component/LayerDef.js"></script>
-	<script egret="game" src="bin-debug/game/view/map/IcoTextBox.js"></script>
+	<script egret="game" src="bin-debug/game/view/def/BoxDef.js"></script>
+	<script egret="game" src="bin-debug/game/view/def/LayerDef.js"></script>
+	<script egret="game" src="bin-debug/game/view/def/SceneDef.js"></script>
 	<script egret="game" src="bin-debug/mana/components/BaseScene.js"></script>
+	<script egret="game" src="bin-debug/game/view/fight/FightScene.js"></script>
+	<script egret="game" src="bin-debug/game/view/map/IcoTextBox.js"></script>
 	<script egret="game" src="bin-debug/game/view/map/MapScene.js"></script>
-	<script egret="game" src="bin-debug/Globle.js"></script>
 	<script egret="game" src="bin-debug/LoadingUI.js"></script>
 	<script egret="game" src="bin-debug/Main.js"></script>
 	<script egret="game" src="bin-debug/mana/collection/CollectionEvent.js"></script>
 	<script egret="game" src="bin-debug/mana/collection/IUniqueItem.js"></script>
-	<script egret="game" src="bin-debug/mana/core/BaseModel.js"></script>
 	<script egret="game" src="bin-debug/mana/collection/UniqueCollection.js"></script>
 	<script egret="game" src="bin-debug/mana/components/BaseButton.js"></script>
 	<script egret="game" src="bin-debug/mana/components/BaseLabel.js"></script>
@@ -60,8 +70,6 @@
 	<script egret="game" src="bin-debug/mana/components/IconLabel.js"></script>
 	<script egret="game" src="bin-debug/mana/core/MemoryCache.js"></script>
 	<script egret="game" src="bin-debug/mana/core/ModelManager.js"></script>
-	<script egret="game" src="bin-debug/mana/core/Singleton.js"></script>
-	<script egret="game" src="bin-debug/mana/core/SysManager.js"></script>
 	<script egret="game" src="bin-debug/mana/core/TipManager.js"></script>
 	<script egret="game" src="bin-debug/mana/events/CompEvent.js"></script>
 	<script egret="game" src="bin-debug/mana/events/CusEvent.js"></script>
@@ -76,6 +84,8 @@
 	<script egret="game" src="bin-debug/mana/utils/StringUtil.js"></script>
 	<script egret="game" src="bin-debug/mana/utils/StyleUtil.js"></script>
 	<script egret="game" src="bin-debug/mana/utils/TimerUtil.js"></script>
+	<script egret="game" src="bin-debug/sheetUtil/RoleInfo.js"></script>
+	<script egret="game" src="bin-debug/sheetUtil/WeaponInfo.js"></script>
 	<script egret="game" src="bin-debug/SysTest.js"></script>
 	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
 	<script egret="game" src="bin-debug/ttt/BubUtil.js"></script>

@@ -159,7 +159,7 @@ module game.ui {
         }
 
         public executeHandler(type: number) {
-            this.close();
+            this.closeUseEffect();
             if(this.handler != null) {
                 if(!this.cbNoTip)
                     this.handler(type);
@@ -207,7 +207,7 @@ module game.ui {
         }
 
         public executeHandler(type: number) {
-            this.close();
+            this.closeUseEffect();
             if(type == Alert.OK || type == Alert.YES) {
                 if(this.handler != null)
                     this.handler(this.labelInput.text);

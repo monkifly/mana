@@ -62,10 +62,12 @@ module mana.comp {
         public open(boxParent: egret.DisplayObjectContainer) {
             if(boxParent) {
                 boxParent.addChild(this);
+                this.exeOpenEffect();
                 this.dispatchEvent(new mana.event.CompEvent(mana.event.CompEvent.BOX_OPENED));
             }
         }
 
+        /**需要关闭特效请用closeUseEffect方法*/
         public close(): boolean {
             if(this.parent) {
                 this.parent.removeChild(this);
@@ -75,8 +77,23 @@ module mana.comp {
             return false;
         }
         
+        public closeUseEffect():boolean{
+            if(this.parent) {
+                this.exeCloseEffect();
+                return true;
+            }
+            return false;
+        }
+        
         protected exeOpenEffect():void{
-            
+            this.alpha = 0.5;
+            egret.Tween.get(this).to({alpha:1},250);
+        }
+        /**如果子类不需要关闭效果可以覆盖此方法，方法中直接调用this.close();*/
+        protected exeCloseEffect(): void {
+            egret.Tween.get(this).to({ alpha: 0.5 },250).call(function(): void {
+                this.close();
+            },this);
         }
 
         protected createModalMC() {
@@ -115,7 +132,7 @@ module mana.comp {
         }
 
         protected onCloseTap(e: egret.TouchEvent) {
-            this.close();
+            this.exeCloseEffect();
         }
 
 	}

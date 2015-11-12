@@ -26,15 +26,16 @@
     "resource/eui_skins/ToggleSwitchSkin.exml",
     "resource/eui_skins/VScrollBarSkin.exml",
     "resource/eui_skins/VSliderSkin.exml",
-    "resource/skins/common/MainUISkin.exml",
-    "resource/skins/comp/CloseButtonSkin.exml",
-    "resource/skins/comp/BaseCloseBoxSkin.exml",
-    "resource/skins/comp/TextButtonSkin.exml",
-    "resource/skins/comp/AlertBoxSkin.exml",
-    "resource/skins/comp/IconButtonSkin.exml",
-    "resource/skins/comp/IconTextCloseBoxSkin.exml",
-    "resource/skins/map/IcoTextTestBoxSkin.exml",
-    "resource/skins/map/MapSceneSkin.exml",
-    "resource/skins/map/TestBoxSkin.exml"
+    "src/game/viewskins/common/MainUISkin.exml",
+    "src/game/viewskins/comp/CloseButtonSkin.exml",
+    "src/game/viewskins/comp/BaseCloseBoxSkin.exml",
+    "src/game/viewskins/comp/TextButtonSkin.exml",
+    "src/game/viewskins/comp/AlertBoxSkin.exml",
+    "src/game/viewskins/comp/IconButtonSkin.exml",
+    "src/game/viewskins/comp/IconTextCloseBoxSkin.exml",
+    "src/game/viewskins/fight/FightSceneSkin.exml",
+    "src/game/viewskins/map/IcoTextTestBoxSkin.exml",
+    "src/game/viewskins/map/MapSceneSkin.exml",
+    "src/game/viewskins/map/TestBoxSkin.exml"
   ]
 }

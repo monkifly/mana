@@ -1,4 +1,4 @@
-module game.ui {
+module game {
     export class LayerDef {
         private static layerBegin: number = 0;
         public static LAYER_BEG: number = LayerDef.layerBegin;

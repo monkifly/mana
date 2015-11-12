@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="FightSceneSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui">
+	<e:Image source="btn_0_5_1" scale9Grid="9,9,73,19" x="0" y="0" width="480" height="320"/>
+</e:Skin>

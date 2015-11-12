@@ -19,10 +19,10 @@
 			"name": "res"
 		},
 		{
-			"name": "game"
+			"name": "tween"
 		},
 		{
-			"name": "tween"
+			"name": "game"
 		}
 	]
 }

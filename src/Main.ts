@@ -1,32 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////
-//
-//  Copyright (c) 2014-2015, Egret Technology Inc.
-//  All rights reserved.
-//  Redistribution and use in source and binary forms, with or without
-//  modification, are permitted provided that the following conditions are met:
-//
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above copyright
-//       notice, this list of conditions and the following disclaimer in the
-//       documentation and/or other materials provided with the distribution.
-//     * Neither the name of the Egret nor the
-//       names of its contributors may be used to endorse or promote products
-//       derived from this software without specific prior written permission.
-//
-//  THIS SOFTWARE IS PROVIDED BY EGRET AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-//  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-//  IN NO EVENT SHALL EGRET AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA,
-//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-//////////////////////////////////////////////////////////////////////////////////////
-
 class Main extends eui.UILayer {
     /**
      * 加载进度界面
@@ -119,58 +90,17 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     private layerRoot: eui.Group = new eui.Group();
+    private gameInitiator: game.GameInitiator;
     protected startCreateScene(): void {
-//        var button = new eui.Button();
-//        button.label = "Click!";
-//        button.horizontalCenter = 0;
-//        button.verticalCenter = 0;
-//        this.addChild(button);
-//        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-        
-        game.initUtils();
-        var str: string = "{0}adfas{1}";
-        var str1 = game.stringUtil.substitute(str,1,99);
-        var str2 = game.stringUtil.substitute(str,[1,"-----2341"]);
-        console.log(str1);
-        console.log(str2);
-        
-        game.sysTest.startSecondTicker();
-        console.log(game.commonUtil.formatTime(562));
-        console.log(game.commonUtil.formatDate("1999-10-20 12:02:28"));
-        console.log(game.commonUtil.formatDate(523412341234));
         
         this.addChild(this.layerRoot);
-        game.layerUtil.stage = this.stage;
-        game.layerUtil.setContainer(this.layerRoot,480,800,480,800);
-        
-        for(var i = game.ui.LayerDef.LAYER_BEG;i < game.ui.LayerDef.LAYER_END;++i){
-            game.layerUtil.createLayer(i,false,true);
+        var layerUtil: mana.utils.LayerUtil = mana.utils.LayerUtil.getInstance();
+        layerUtil.stage = this.stage;
+        layerUtil.setContainer(this.layerRoot,480,800,480,800);
+        for(var i = game.LayerDef.LAYER_BEG;i < game.LayerDef.LAYER_END;++i) {
+            layerUtil.createLayer(i,false,true);
         }
-        
-        game.sceneUtil.setSceneRoot(game.layerUtil.getLayer(game.ui.LayerDef.SCENE)); 
-        game.sceneUtil.setGetSceneClass(function(sceneID): any {
-            if(sceneID == 1) {
-                return game.MapScene;
-            }
-        });
-        game.sceneUtil.runScene(1);
-        
-        game.boxUtil.setGetBoxClass(function(boxID): any {
-            if(boxID == 1) {
-                return game.IcoTextBox;
-            }
-        })
-        
-        var mainUI: game.MainUI = new game.MainUI();
-        game.layerUtil.addChild(mainUI,game.ui.LayerDef.BASE_UI);
+        this.gameInitiator = new game.GameInitiator();
+        this.gameInitiator.startup();
     }
-
-//    private onButtonClick(e: egret.TouchEvent) {
-//        var panel = new eui.Panel();
-//        panel.title = "Title";
-//        panel.horizontalCenter = 0;
-//        panel.verticalCenter = 0;
-//        this.addChild(panel);
-//        game.sysTest.stopSecondTicker();
-//    }
 }
