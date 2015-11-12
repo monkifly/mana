@@ -17,12 +17,11 @@ module game {
 		}
 		
         btnTest2Tap() {
-            var msgUtil: game.utils.MsgUtil = game.utils.MsgUtil.getInstance();
             msgUtil.show("aaa{0}bbb{1}ccc{0}",2341,5234);
-            game.ui.Alert.show("t<b>加粗</b>t <font color='#ff0000'>content</font>\na<i>斜体</i>aa <font size='30'>bbb</font>");
-            game.ui.Alert.show("aaaa",null,true,game.ui.Alert.OK | game.ui.Alert.CANCEL);
-            game.ui.Alert.show("bbbb",null,true,game.ui.Alert.YES | game.ui.Alert.NO);
-            game.ui.Alert.show("CCCC",null,true,game.ui.Alert.YES);
+            Alert.show("t<b>加粗</b>t <font color='#ff0000'>content</font>\na<i>斜体</i>aa <font size='30'>bbb</font>");
+            Alert.show("aaaa",null,true,Alert.OK | Alert.CANCEL);
+            Alert.show("bbbb",null,true,Alert.YES | Alert.NO);
+            Alert.show("CCCC",null,true,Alert.YES);
         }
 	}
 }
