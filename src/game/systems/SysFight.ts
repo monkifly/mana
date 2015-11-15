@@ -9,7 +9,7 @@ module game {
             super();
 		}
 		
-		public startFight():void{
+		public startFight(aTeam:FightTeam, dTeam:FightTeam):void{
 		    
 		}
 	}

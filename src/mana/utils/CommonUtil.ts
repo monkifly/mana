@@ -108,7 +108,6 @@ module mana {
 				rotation = acos * 180 / Math.PI;
 				return rotation;
 			}
-
 		}
 	}
 }

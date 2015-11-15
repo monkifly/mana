@@ -4,6 +4,7 @@ module game {
     export var layerUtil: mana.utils.LayerUtil;
     export var sceneUtil: mana.utils.SceneUtil;
     export var boxUtil: mana.utils.BoxUtil;
+    export var mathUtil: mana.utils.MathUtil;
     export var msgUtil: game.utils.MsgUtil;
     
     export var Alert;
@@ -14,6 +15,7 @@ module game {
         layerUtil = mana.utils.LayerUtil.getInstance();
         sceneUtil = mana.utils.SceneUtil.getInstance();
         boxUtil = mana.utils.BoxUtil.getInstance();
+        mathUtil = mana.utils.MathUtil.getInstance();
         
         msgUtil = game.utils.MsgUtil.getInstance();
         Alert = game.ui.Alert;
