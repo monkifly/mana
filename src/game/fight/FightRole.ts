@@ -1,6 +1,7 @@
 module game{
     export class FightRole{
 
+        public owner: FightTeam;
         public hp: number;
         public hp2: number;
         private _totalWeapons: Array<FightWeapon> = [];
@@ -9,7 +10,7 @@ module game{
         public constructor() {
         }
         
-        private checkEntranceWeapon(): void {
+        public checkEntranceWeapon(): void {
             while(this._curWeapons.length < FightDef.NUM_ENTRANCE_WEAPON) {
                 var ran: number = mathUtil.randomInt(this._totalWeapons.length);
                 var ranWeapon: FightWeapon = this._totalWeapons[ran];
@@ -17,12 +18,16 @@ module game{
             }
         }
 
-        private getCanUseWeapon(): Array<FightWeapon> {
+        public getCanUseWeapon(): Array<FightWeapon> {
             var ary: Array<FightWeapon> = [];
 
             ary.push(this._curWeapons.shift());
 
             return ary;
+        }
+        
+        public isDie():boolean{
+            return this.hp == 0;
         }
     }
 }
