@@ -5,7 +5,9 @@ module game {
 	 *
 	 */
 	export class RoleInfo {
-        public maxHp: number = 1000;
+        public maxHp: number = 99;
+        public name:string = "";
+        public speed:number = 50;
 		public constructor() {
 		}
 	}

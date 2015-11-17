@@ -5,41 +5,39 @@ module game {
 	 *
 	 */
 	export class FightTeam {
-        private _roles: Array<FightRole> = [];
-        private curAtkRoleIndex: number = 0;
-        
+        private allRoles:Array<FightRole> = [];
+        public liveRoles: Array<FightRole> = [];
+        private dieRoles:Array<FightRole> = [];
+
 		public constructor() {
     		
 		}
-		
-		public get curAtkRole():FightRole{
-            return this._roles[this.curAtkRoleIndex];
-		}
-		
+        public addRole(role:FightRole):void{
+            role.owner = this;
+            this.allRoles.push(role);
+            this.liveRoles.push(role);
+        }
+
 		public enterFight():void{
             var role: FightRole;
-            for(var i: number = 0;i < this._roles.length; ++i){
-                role = this._roles[i];
-                role.checkEntranceWeapon();
+            for(var i: number = 0;i < this.liveRoles.length; ++i){
+                role = this.liveRoles[i];
+                role.checkFightWeapons();
             }
 		}
-		
-		public nextAtk():void{
-            this.curAtkRoleIndex++;
-            if(this.curAtkRoleIndex >= this._roles.length){
-                this.curAtkRoleIndex = 0;
-            }
-		}
-		
-		public isDie():boolean{
+
+        public resetDie():void{
             var role: FightRole;
-            for(var i: number = 0;i < this._roles.length;++i) {
-                role = this._roles[i];
-                if(!role.isDie()){
-                    return false;
+            for(var i: number = 0;i < this.liveRoles.length;++i) {
+                role = this.liveRoles[i];
+                if(role.isDie()){
+                    this.dieRoles.push(this.liveRoles.splice(i--,1)[0]);
                 }
             }
-            return true;
+        }
+
+		public isAllDie():boolean{
+            return this.liveRoles.length==0;
 		}
 	}
 }

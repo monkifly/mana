@@ -5,6 +5,17 @@ module game {
 	 *
 	 */
 	export class FightWeapon extends mana.BaseModel{
-        public info: WeaponInfo;
+        private _info: WeaponInfo;
+
+        public set info(value: WeaponInfo) {
+            this._info = value;
+        }
+        public get info(): WeaponInfo {
+            return this._info;
+        }
+        
+        public get attack():number{
+            return this.info.attack;
+        }
 	}
 }

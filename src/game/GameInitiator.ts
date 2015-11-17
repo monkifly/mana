@@ -52,7 +52,7 @@ module game {
             console.log(str1);
             console.log(str2);
 
-            sysTest.startSecondTicker();
+//            sysTest.startSecondTicker();
             console.log(commonUtil.formatTime(562));
             console.log(commonUtil.formatDate("1999-10-20 12:02:28"));
             console.log(commonUtil.formatDate(523412341234));
@@ -67,6 +67,39 @@ module game {
             layerUtil.addChild(mainUI,LayerDef.BASE_UI);
 
 
+            var aTeam:FightTeam = new FightTeam();
+            var dTeam:FightTeam = new FightTeam();
+
+            var role:FightRole;
+            var roleInfo:RoleInfo;
+            var weapon:FightWeapon;
+            var weaponInfo:WeaponInfo;
+
+            for(var i=0; i<3; ++i){
+                role = new FightRole();
+                roleInfo = new RoleInfo();
+                role.info = roleInfo;
+                role.name = "atk" + i;
+                role.speed = 100+i;
+                weapon = new FightWeapon();
+                weaponInfo = new WeaponInfo();
+                weapon.info = weaponInfo;
+                role.addWeapon(weapon);
+                aTeam.addRole(role);
+
+                role = new FightRole();
+                roleInfo = new RoleInfo();
+                role.info = roleInfo;
+                role.name = "def" + i;
+                weapon = new FightWeapon();
+                weaponInfo = new WeaponInfo();
+                weapon.info = weaponInfo;
+                role.addWeapon(weapon);
+                dTeam.addRole(role);
+            }
+
+            var fightResult:FightResult = sysFight.startFight(aTeam, dTeam);
+            console.log(sysFight.getFightLog(fightResult));
 //            console.log(SheetUtil.getRoleInfo(1).name);
         }
     }
